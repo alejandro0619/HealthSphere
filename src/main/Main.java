@@ -1,23 +1,30 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
-import javax.swing.UIManager;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  *
  * @author Aleja
  */
 public class Main extends javax.swing.JFrame {
-
+    //BackgroundPanel bg = new BackgroundPanel("/resources/Artboard 1.png");
+    
     /**
      * Creates new form Main
      */
     public Main() {
+        //this.setContentPane(bg);
+
         initComponents();
     }
 
@@ -30,91 +37,134 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        bgPanel = new javax.swing.JPanel();
-        labelTitle = new javax.swing.JLabel();
-        inputEmail = new javax.swing.JTextField();
-        inputPassword = new javax.swing.JTextField();
-        btnLogIn = new javax.swing.JButton();
+        BgPanel = new BackgroundPanel("/resources/Artboard 1.png");
+        Form = new RoundedPanel();
+        acceder = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        LogIn = new RoundedButton("Inicar Sesión");
+        jTextField1 = new RoundedTextField();
+        jTextField2 = new RoundedTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(800, 650));
+        setMinimumSize(new java.awt.Dimension(800, 650));
 
-        labelTitle.setFont(new java.awt.Font("FiraCode Nerd Font Propo", 0, 24)); // NOI18N
-        labelTitle.setText("Bienvenido a med-app");
+        Form.setBackground(new java.awt.Color(217, 217, 217, 120
+        ));
 
-        inputEmail.addActionListener(new java.awt.event.ActionListener() {
+        acceder.setFont(new java.awt.Font("Hack Nerd Font Propo", 0, 36)); // NOI18N
+        acceder.setText("Acceder");
+
+        jLabel2.setFont(new java.awt.Font("Hack Nerd Font Propo", 0, 14)); // NOI18N
+        jLabel2.setText("Iniciar Sesión para continuar");
+
+        LogIn.setBackground(new java.awt.Color(217, 217, 217, 0));
+        LogIn.setFont(new java.awt.Font("Hack Nerd Font Propo", 1, 12));
+        LogIn.setText("Iniciar sesión");
+        LogIn.setToolTipText("");
+        LogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputEmailActionPerformed(evt);
+                LogInActionPerformed(evt);
             }
         });
 
-        btnLogIn.setFont(new java.awt.Font("FiraCode Nerd Font Mono", 0, 12)); // NOI18N
-        btnLogIn.setText("Iniciar sesión");
-        btnLogIn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogInActionPerformed(evt);
-            }
-        });
+        jLabel3.setFont(new java.awt.Font("Hack Nerd Font Propo", 0, 14)); // NOI18N
+        jLabel3.setText("Contraseña");
 
-        javax.swing.GroupLayout bgPanelLayout = new javax.swing.GroupLayout(bgPanel);
-        bgPanel.setLayout(bgPanelLayout);
-        bgPanelLayout.setHorizontalGroup(
-            bgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bgPanelLayout.createSequentialGroup()
-                .addContainerGap(243, Short.MAX_VALUE)
-                .addGroup(bgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(inputEmail)
-                    .addComponent(inputPassword))
-                .addGap(252, 252, 252))
-            .addGroup(bgPanelLayout.createSequentialGroup()
-                .addGap(283, 283, 283)
-                .addComponent(btnLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        jLabel4.setFont(new java.awt.Font("Hack Nerd Font Propo", 0, 14)); // NOI18N
+        jLabel4.setText("Email");
+
+        javax.swing.GroupLayout FormLayout = new javax.swing.GroupLayout(Form);
+        Form.setLayout(FormLayout);
+        FormLayout.setHorizontalGroup(
+            FormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FormLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(acceder)
+                .addGap(126, 126, 126))
+            .addGroup(FormLayout.createSequentialGroup()
+                .addGap(97, 97, 97)
+                .addGroup(FormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2)
+                    .addGroup(FormLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(LogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
-        bgPanelLayout.setVerticalGroup(
-            bgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bgPanelLayout.createSequentialGroup()
-                .addGap(118, 118, 118)
-                .addComponent(labelTitle)
-                .addGap(56, 56, 56)
-                .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
-                .addComponent(btnLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+        FormLayout.setVerticalGroup(
+            FormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FormLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(acceder)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(LogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
+        );
+
+        javax.swing.GroupLayout BgPanelLayout = new javax.swing.GroupLayout(BgPanel);
+        BgPanel.setLayout(BgPanelLayout);
+        BgPanelLayout.setHorizontalGroup(
+            BgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BgPanelLayout.createSequentialGroup()
+                .addContainerGap(229, Short.MAX_VALUE)
+                .addComponent(Form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(227, 227, 227))
+        );
+        BgPanelLayout.setVerticalGroup(
+            BgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BgPanelLayout.createSequentialGroup()
+                .addContainerGap(56, Short.MAX_VALUE)
+                .addComponent(Form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(BgPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(BgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void inputEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputEmailActionPerformed
+    private void LogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogInActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_inputEmailActionPerformed
-
-    private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLogInActionPerformed
+        // Close the current window
+        this.dispose();
+    
+        // Open a new window
+        JFrame newFrame = new JFrame("New Window");
+        newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        newFrame.setSize(400, 300);
+        newFrame.setVisible(true);
+    }//GEN-LAST:event_LogInActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        try {
+            try {
             
             FlatIntelliJLaf.setup();
         } catch(Exception e) {
@@ -127,13 +177,36 @@ public class Main extends javax.swing.JFrame {
                 new Main().setVisible(true);
             }
         });
+
+       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel bgPanel;
-    private javax.swing.JButton btnLogIn;
-    private javax.swing.JTextField inputEmail;
-    private javax.swing.JTextField inputPassword;
-    private javax.swing.JLabel labelTitle;
+    private javax.swing.JPanel BgPanel;
+    private javax.swing.JPanel Form;
+    private javax.swing.JButton LogIn;
+    private javax.swing.JLabel acceder;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+    class BackgroundPanel extends JPanel {
+        private Image bg;
+        private String path;
+        
+        public BackgroundPanel(String path) {
+            this.path = path;
+        }
+        
+        @Override
+        public void paint(Graphics g) {
+            bg = new ImageIcon(getClass().getResource(path)).getImage();
+            g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
+            setOpaque(false);
+            super.paint(g);
+        }
+    }
+
 }
