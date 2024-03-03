@@ -62,7 +62,6 @@ public class QueriesHandler {
                 // Close resources
             }
         }
-        conn.close();
         return doctor;
     }
 }
