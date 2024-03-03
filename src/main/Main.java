@@ -16,6 +16,7 @@ import db.QueriesHandler;
 import db.entities.Doctor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -179,20 +180,19 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInActionPerformed
-        // TODO add your handling code here:
-        // Close the current window
-        this.dispose();
         try {
-            Doctor doc = qh.getDoctor(inputEmail.getText(), inputPassword.getText());
-            System.out.println(doc);
+            Doctor doc = qh.getDoctor(inputEmail.getText(), inputPassword.getText());          
+            if (doc != null) {
+                this.dispose();
+                new Dashboard().setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "El usuario o contraseña es incorrecto", "Error en el inicio de sesión", JOptionPane.ERROR_MESSAGE);
+            }     
             
-            new Dashboard().setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        // Open a new window
-        
+            JOptionPane.showMessageDialog(null, "Ha sucedido un error interno en la aplicación, por favor contacte un administrador", "Error interno", JOptionPane.ERROR_MESSAGE);
+        }      
         
     }//GEN-LAST:event_btnLogInActionPerformed
 

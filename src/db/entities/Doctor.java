@@ -9,6 +9,7 @@ package db.entities;
  * @author Aleja
  */
 public class Doctor {
+    private Integer id;
     private String nombreCompleto;
     private String correoElectronico;
     private String cedula;
@@ -17,7 +18,8 @@ public class Doctor {
     private String contrasena;
 
     // Constructor
-    public Doctor(String nombreCompleto, String correoElectronico, String cedula, String direccion, String especialidad, String contrasena) {
+    public Doctor(Integer id, String nombreCompleto, String correoElectronico, String cedula, String direccion, String especialidad, String contrasena) {
+        this.id = null;
         this.nombreCompleto = nombreCompleto;
         this.correoElectronico = correoElectronico;
         this.cedula = cedula;
@@ -50,7 +52,12 @@ public class Doctor {
     public String getContrasena() {
         return contrasena;
     }
-
+    public int getId() {
+        return this.id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
     // Setter methods (if needed)
     public void setNombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
