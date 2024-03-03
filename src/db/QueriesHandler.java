@@ -57,7 +57,7 @@ public class QueriesHandler {
                     String cedula = rs.getString("cedula");
                     String direccion = rs.getString("direccion");
                     String especialidad = rs.getString("especialidad");
-                    doctor = new Doctor(nombreCompleto, email, cedula, direccion, especialidad, password);
+                    doctor = new Doctor(null, nombreCompleto, email, cedula, direccion, especialidad, password);
                 }
                 // Close resources
             }
