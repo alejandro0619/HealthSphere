@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
-import lib.VerifyUser;
+
 import customComps.RoundedTextField;
 import customComps.RoundedPanel;
 import customComps.RoundedButton;
@@ -11,20 +11,26 @@ import customComps.BackgroundPanel;
 import java.sql.*;
 
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
-import db.ConnectionHandler;
+import db.DatabaseHandler;
+import db.QueriesHandler;
+import db.entities.Doctor;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Aleja
  */
 public class Main extends javax.swing.JFrame {
-    //BackgroundPanel bg = new BackgroundPanel("/resources/Artboard 1.png");
-    
+    private DatabaseHandler dh;
+    private QueriesHandler qh;
     /**
      * Creates new form Main
      */
     public Main() {
         //this.setContentPane(bg);
+        dh = new DatabaseHandler();
+        qh = dh.queriesHandler();
         
         initComponents();
     }
@@ -176,13 +182,17 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Close the current window
         this.dispose();
-        new Dashboard().setVisible(true);
-        // Open a new window
-        if (new VerifyUser("emailprueba", "contrasena").isVerified()) {
+        try {
+            Doctor doc = qh.getDoctor(inputEmail.getText(), inputPassword.getText());
+            System.out.println(doc);
             
-        } else {
-            
+            new Dashboard().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        // Open a new window
+        
         
     }//GEN-LAST:event_btnLogInActionPerformed
 
@@ -197,9 +207,9 @@ public class Main extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-            try {
+        try {
             
-                FlatMacLightLaf.setup();
+            FlatMacLightLaf.setup();
         } catch(Exception e) {
             e.printStackTrace();
         }

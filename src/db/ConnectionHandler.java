@@ -11,28 +11,21 @@ import java.sql.*;
  *
  * @author Aleja
  */
-public class ConnectionHandler {
+class ConnectionHandler {
     private final String url = "jdbc:mysql://localhost:3306/health_sphere";
-    private final String username = "root";
-    private final String password = "";
-        
+    private final String username = "xxx";
+    private final String password = "xxx";
+    private Connection conn;
+    
     public ConnectionHandler() {
         try {
-            Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
-            System.out.println("Se ha conectado bien");
-            Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM medico");
-            
-            while(rs.next()) {
-                int id = rs.getInt("id");
-                String fullname = rs.getString("nombre_completo");
-                System.out.println("EL id es: " + id + " y el nombre es: " + fullname);
-                
-            }
-            rs.close();
-            statement.close();
-            conn.close();
+            this.conn = DriverManager.getConnection(this.url, this.username, this.password);
+            System.out.println("Se ha conectado bien");     
         } catch(SQLException e) {
         }
+    }
+    
+    public Connection getConn() {
+        return this.conn;
     }
 }
