@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-03-2024 a las 18:15:41
+-- Tiempo de generación: 03-03-2024 a las 16:24:26
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -33,8 +33,10 @@ CREATE TABLE `medico` (
   `correo_electronico` varchar(30) NOT NULL,
   `cedula` varchar(9) NOT NULL,
   `direccion` text NOT NULL,
-  `especialidad` varchar(50) NOT NULL
+  `especialidad` varchar(50) NOT NULL,
+  `contrasena` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 -- --------------------------------------------------------
 
@@ -100,7 +102,7 @@ ALTER TABLE `reporte`
 -- AUTO_INCREMENT de la tabla `medico`
 --
 ALTER TABLE `medico`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `paciente`
