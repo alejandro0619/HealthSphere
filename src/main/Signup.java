@@ -4,6 +4,8 @@
  */
 package main;
 
+import customComps.BackgroundPanel;
+
 /**
  *
  * @author Aleja

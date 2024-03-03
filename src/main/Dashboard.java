@@ -4,6 +4,8 @@
  */
 package main;
 
+import customComps.RoundedPanel;
+import customComps.BackgroundPanel;
 import java.awt.Color;
 
 /**

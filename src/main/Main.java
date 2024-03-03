@@ -3,18 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package main;
+import lib.VerifyUser;
+import customComps.RoundedTextField;
+import customComps.RoundedPanel;
+import customComps.RoundedButton;
+import customComps.BackgroundPanel;
+import java.sql.*;
 
-import com.formdev.flatlaf.FlatIntelliJLaf;
-import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import db.ConnectionHandler;
 
 /**
  *
@@ -28,7 +25,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         //this.setContentPane(bg);
-
+        
         initComponents();
     }
 
