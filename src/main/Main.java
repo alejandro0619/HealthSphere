@@ -11,6 +11,7 @@ import customComps.BackgroundPanel;
 import java.sql.*;
 
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import customComps.RoundedPasswordField;
 import db.DatabaseHandler;
 import db.QueriesHandler;
 import db.entities.Doctor;
@@ -49,12 +50,13 @@ public class Main extends javax.swing.JFrame {
         Form = new RoundedPanel();
         labelTitle = new javax.swing.JLabel();
         labelSubtitle = new javax.swing.JLabel();
-        btnLogIn = new RoundedButton("Inicar Sesión");
-        inputPassword = new RoundedTextField();
+        btnLogIn = new javax.swing.JButton();
         inputEmail = new RoundedTextField();
         labelPassword = new javax.swing.JLabel();
         labelEmail = new javax.swing.JLabel();
-        btnSignup = new RoundedButton("Regístrate");
+        btnSignup = new javax.swing.JButton();
+        labelPassword1 = new javax.swing.JLabel();
+        inputPassword = new RoundedPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HealthSphere");
@@ -75,7 +77,7 @@ public class Main extends javax.swing.JFrame {
         labelSubtitle.setFont(new java.awt.Font("Hack Nerd Font Propo", 0, 14)); // NOI18N
         labelSubtitle.setText("Iniciar Sesión para continuar");
 
-        btnLogIn.setBackground(new java.awt.Color(217, 217, 217, 0));
+        btnLogIn.setBackground(new java.awt.Color(217, 217, 217, 120));
         btnLogIn.setFont(new java.awt.Font("Hack Nerd Font Propo", 1, 12));
         btnLogIn.setText("Iniciar sesión");
         btnLogIn.setToolTipText("");
@@ -92,8 +94,8 @@ public class Main extends javax.swing.JFrame {
         labelEmail.setText("Email");
 
         btnSignup.putClientProperty("Component.style", "JButtonRounded");
-        btnSignup.setBackground(new java.awt.Color(217, 217, 217, 0));
-        btnSignup.setFont(new java.awt.Font("Hack Nerd Font Propo", 0, 12)); // NOI18N
+        btnSignup.setBackground(new java.awt.Color(217, 217, 217, 120));
+        btnSignup.setFont(new java.awt.Font("Hack Nerd Font Propo", 1, 12)); // NOI18N
         btnSignup.setText("Regístrate");
         btnSignup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,36 +103,44 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        labelPassword1.setFont(new java.awt.Font("Hack Nerd Font Propo", 0, 14)); // NOI18N
+        labelPassword1.setText("¿No tienes cuenta?");
+
+        inputPassword.setFont(new java.awt.Font("Hack Nerd Font Propo", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout FormLayout = new javax.swing.GroupLayout(Form);
         Form.setLayout(FormLayout);
         FormLayout.setHorizontalGroup(
             FormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FormLayout.createSequentialGroup()
-                .addGroup(FormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(FormLayout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addGroup(FormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelEmail)
-                            .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelPassword)
-                            .addComponent(btnSignup)
-                            .addComponent(labelSubtitle)))
-                    .addGroup(FormLayout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(btnLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(94, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FormLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(labelTitle)
-                .addGap(128, 128, 128))
+                .addGap(136, 136, 136))
+            .addGroup(FormLayout.createSequentialGroup()
+                .addGroup(FormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FormLayout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addComponent(btnLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(FormLayout.createSequentialGroup()
+                        .addGap(87, 87, 87)
+                        .addGroup(FormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(labelEmail)
+                            .addComponent(labelPassword)
+                            .addGroup(FormLayout.createSequentialGroup()
+                                .addComponent(labelPassword1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnSignup))
+                            .addComponent(inputEmail)
+                            .addComponent(labelSubtitle, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(inputPassword))))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         FormLayout.setVerticalGroup(
             FormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FormLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(27, 27, 27)
                 .addComponent(labelTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelSubtitle, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -140,9 +150,11 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(labelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(btnSignup)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(FormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSignup, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(btnLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53))
         );
@@ -154,14 +166,14 @@ public class Main extends javax.swing.JFrame {
             .addGroup(BgPanelLayout.createSequentialGroup()
                 .addGap(231, 231, 231)
                 .addComponent(Form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(479, Short.MAX_VALUE))
+                .addContainerGap(461, Short.MAX_VALUE))
         );
         BgPanelLayout.setVerticalGroup(
             BgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BgPanelLayout.createSequentialGroup()
                 .addGap(79, 79, 79)
                 .addComponent(Form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -181,7 +193,7 @@ public class Main extends javax.swing.JFrame {
 
     private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInActionPerformed
         try {
-            Doctor doc = qh.getDoctor(inputEmail.getText(), inputPassword.getText());          
+            Doctor doc = qh.getDoctor(inputEmail.getText(), new String(inputPassword.getPassword()));          
             if (doc != null) {
                 this.dispose();
                 new Dashboard().setVisible(true);
@@ -207,8 +219,7 @@ public class Main extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        try {
-            
+        try {            
             FlatMacLightLaf.setup();
         } catch(Exception e) {
             e.printStackTrace();
@@ -230,9 +241,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton btnLogIn;
     private javax.swing.JButton btnSignup;
     private javax.swing.JTextField inputEmail;
-    private javax.swing.JTextField inputPassword;
+    private javax.swing.JPasswordField inputPassword;
     private javax.swing.JLabel labelEmail;
     private javax.swing.JLabel labelPassword;
+    private javax.swing.JLabel labelPassword1;
     private javax.swing.JLabel labelSubtitle;
     private javax.swing.JLabel labelTitle;
     // End of variables declaration//GEN-END:variables
