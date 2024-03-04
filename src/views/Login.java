@@ -2,15 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package main;
+package views;
 
 import customComps.RoundedTextField;
 import customComps.RoundedPanel;
-import customComps.RoundedButton;
 import customComps.BackgroundPanel;
 import java.sql.*;
 
-import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import customComps.RoundedPasswordField;
 import db.DatabaseHandler;
 import db.QueriesHandler;
@@ -23,13 +21,13 @@ import javax.swing.JOptionPane;
  *
  * @author Aleja
  */
-public class Main extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame {
     private DatabaseHandler dh;
     private QueriesHandler qh;
     /**
      * Creates new form Main
      */
-    public Main() {
+    public Login() {
         //this.setContentPane(bg);
         dh = new DatabaseHandler();
         qh = dh.queriesHandler();
@@ -164,16 +162,16 @@ public class Main extends javax.swing.JFrame {
         BgPanelLayout.setHorizontalGroup(
             BgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BgPanelLayout.createSequentialGroup()
-                .addGap(231, 231, 231)
+                .addGap(220, 220, 220)
                 .addComponent(Form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(461, Short.MAX_VALUE))
+                .addContainerGap(472, Short.MAX_VALUE))
         );
         BgPanelLayout.setVerticalGroup(
             BgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BgPanelLayout.createSequentialGroup()
-                .addGap(79, 79, 79)
+                .addGap(78, 78, 78)
                 .addComponent(Form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -202,7 +200,7 @@ public class Main extends javax.swing.JFrame {
             }     
             
         } catch (SQLException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ha sucedido un error interno en la aplicación, por favor contacte un administrador", "Error interno", JOptionPane.ERROR_MESSAGE);
         }      
         
@@ -211,29 +209,11 @@ public class Main extends javax.swing.JFrame {
     private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new Signup().setVisible(true);
+        new Signup(this.dh).setVisible(true);
         
     }//GEN-LAST:event_btnSignupActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        try {            
-            FlatMacLightLaf.setup();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Main().setVisible(true);
-            }
-        });
-
-       
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BgPanel;

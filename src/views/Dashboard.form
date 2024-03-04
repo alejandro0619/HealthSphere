@@ -32,7 +32,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="BgPanel" alignment="0" max="32767" attributes="0"/>
+          <Component id="BgPanel" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -46,18 +46,18 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Component id="Main" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="317" max="32767" attributes="0"/>
+                  <EmptySpace pref="42" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="Main" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="172" max="32767" attributes="0"/>
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -78,39 +78,37 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                      <Component id="logo" min="-2" pref="219" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lableTitle" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelSubtitle" min="-2" max="-2" attributes="0"/>
+                          <Component id="MenuBar" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="logo" min="-2" pref="219" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lableTitle" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelSubtitle" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="41" max="32767" attributes="0"/>
-                      <Component id="MenuBar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                      <EmptySpace pref="87" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace pref="117" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="199" max="-2" attributes="0"/>
+                          <Component id="logo" min="-2" pref="219" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
                               <Component id="lableTitle" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="labelSubtitle" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
-                              <Component id="logo" min="-2" pref="219" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="40" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                       <Component id="MenuBar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -148,9 +146,9 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           <Component id="labelProfile" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="451" max="32767" attributes="0"/>
+                          <EmptySpace pref="378" max="32767" attributes="0"/>
                           <Component id="labelRecords" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                           <Component id="labelSearch" min="-2" max="-2" attributes="0"/>
@@ -167,7 +165,7 @@
                               <Component id="labelRecords" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="labelSearch" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="16" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
