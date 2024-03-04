@@ -2,23 +2,37 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package main;
+package views;
 
 import customComps.BackgroundPanel;
 import customComps.RoundedPanel;
 import customComps.RoundedPasswordField;
 import customComps.RoundedTextField;
+import db.DatabaseHandler;
+import db.QueriesHandler;
+import db.QueryResponses;
+import db.entities.Doctor;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Aleja
  */
 public class Signup extends javax.swing.JFrame {
-
+    private DatabaseHandler dh;
+    private QueriesHandler qh;
+    
     /**
      * Creates new form Signup
      */
-    public Signup() {
+    public Signup(DatabaseHandler dh) {
+        this.dh = dh;
+        this.qh = dh.queriesHandler();
+        
         initComponents();
     }
 
@@ -38,20 +52,19 @@ public class Signup extends javax.swing.JFrame {
         labelEmail = new javax.swing.JLabel();
         labelPassword = new javax.swing.JLabel();
         inputFullName = new RoundedTextField();
-        inputPassword = new RoundedTextField();
+        inputEmail = new RoundedTextField();
         btnSignup = new javax.swing.JButton();
         labelSubtitle = new javax.swing.JLabel();
-        btnMain = new javax.swing.JButton();
-        passwordField = new RoundedPasswordField();
+        btnLogin = new javax.swing.JButton();
+        inputPassword = new RoundedPasswordField();
         labelAddress = new javax.swing.JLabel();
         inputAddress = new RoundedTextField();
         labelCedula = new javax.swing.JLabel();
-        inputCedula = new RoundedTextField();
+        inputID = new RoundedTextField();
         labelSpecialty = new javax.swing.JLabel();
         inputSpecialty = new RoundedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(881, 519));
         setResizable(false);
 
         Form2.setBackground(new java.awt.Color(217, 217, 217, 200));
@@ -74,31 +87,36 @@ public class Signup extends javax.swing.JFrame {
             }
         });
 
-        inputPassword.addActionListener(new java.awt.event.ActionListener() {
+        inputEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputPasswordActionPerformed(evt);
+                inputEmailActionPerformed(evt);
             }
         });
 
         btnSignup.setBackground(new java.awt.Color(217, 217, 217,120));
         btnSignup.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
         btnSignup.setText("Registrarse");
-
-        labelSubtitle.setFont(new java.awt.Font("Hack", 0, 12)); // NOI18N
-        labelSubtitle.setText("¿Ya estas registrado?");
-
-        btnMain.setBackground(new java.awt.Color(217, 217, 217,120));
-        btnMain.setFont(new java.awt.Font("Hack", 1, 10)); // NOI18N
-        btnMain.setText("Iniciar Sesión");
-        btnMain.addActionListener(new java.awt.event.ActionListener() {
+        btnSignup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMainActionPerformed(evt);
+                btnSignupActionPerformed(evt);
             }
         });
 
-        passwordField.addActionListener(new java.awt.event.ActionListener() {
+        labelSubtitle.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        labelSubtitle.setText("¿Ya estas registrado?");
+
+        btnLogin.setBackground(new java.awt.Color(217, 217, 217,120));
+        btnLogin.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
+        btnLogin.setText("Iniciar Sesión");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordFieldActionPerformed(evt);
+                btnLoginActionPerformed(evt);
+            }
+        });
+
+        inputPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputPasswordActionPerformed(evt);
             }
         });
 
@@ -109,9 +127,9 @@ public class Signup extends javax.swing.JFrame {
         labelCedula.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
         labelCedula.setText("Cédula");
 
-        inputCedula.addActionListener(new java.awt.event.ActionListener() {
+        inputID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputCedulaActionPerformed(evt);
+                inputIDActionPerformed(evt);
             }
         });
 
@@ -129,77 +147,77 @@ public class Signup extends javax.swing.JFrame {
         Form2.setLayout(Form2Layout);
         Form2Layout.setHorizontalGroup(
             Form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Form2Layout.createSequentialGroup()
-                .addGap(299, 299, 299)
-                .addComponent(btnSignup, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Form2Layout.createSequentialGroup()
-                .addContainerGap(95, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnSignup, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(308, 308, 308))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Form2Layout.createSequentialGroup()
+                .addContainerGap(111, Short.MAX_VALUE)
                 .addGroup(Form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelEmail)
                     .addGroup(Form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(inputAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(labelAddress)
                     .addComponent(labelCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inputCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                    .addComponent(inputID, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(65, 65, 65)
                 .addGroup(Form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(inputFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelName)
                     .addComponent(labelSpecialty)
                     .addComponent(inputSpecialty, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelPassword)
-                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(95, 95, 95))
+                    .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(101, 101, 101))
             .addGroup(Form2Layout.createSequentialGroup()
                 .addGroup(Form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(Form2Layout.createSequentialGroup()
-                        .addGap(224, 224, 224)
-                        .addComponent(labelSubtitle)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnMain, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(277, 277, 277)
+                        .addComponent(labelTitle2))
                     .addGroup(Form2Layout.createSequentialGroup()
-                        .addGap(238, 238, 238)
-                        .addComponent(labelTitle2)))
+                        .addGap(244, 244, 244)
+                        .addComponent(labelSubtitle)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLogin)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         Form2Layout.setVerticalGroup(
             Form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Form2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Form2Layout.createSequentialGroup()
+                .addContainerGap(67, Short.MAX_VALUE)
                 .addComponent(labelTitle2)
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addGroup(Form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelName, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(Form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(inputFullName)
-                    .addComponent(inputCedula))
+                    .addComponent(inputID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(Form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelAddress)
+                .addGroup(Form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelAddress, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(labelSpecialty))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(Form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(inputSpecialty)
-                    .addComponent(inputAddress))
+                    .addComponent(inputAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(Form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelEmail)
                     .addComponent(labelPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(Form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(inputPassword)
-                    .addComponent(passwordField))
-                .addGap(13, 13, 13)
+                    .addComponent(inputEmail)
+                    .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addGroup(Form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelSubtitle)
-                    .addComponent(btnMain))
-                .addGap(28, 28, 28)
-                .addComponent(btnSignup, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-                .addGap(44, 44, 44))
+                    .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnSignup, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
 
         javax.swing.GroupLayout BgPanel2Layout = new javax.swing.GroupLayout(BgPanel2);
@@ -207,16 +225,16 @@ public class Signup extends javax.swing.JFrame {
         BgPanel2Layout.setHorizontalGroup(
             BgPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BgPanel2Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(46, 46, 46)
                 .addComponent(Form2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         BgPanel2Layout.setVerticalGroup(
             BgPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BgPanel2Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(22, 22, 22)
                 .addComponent(Form2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -238,70 +256,64 @@ public class Signup extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputFullNameActionPerformed
 
-    private void btnMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMainActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnMainActionPerformed
+        this.dispose();
+        new Login().setVisible(true);
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void inputEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputEmailActionPerformed
 
     private void inputPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputPasswordActionPerformed
 
-    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
+    private void inputIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordFieldActionPerformed
-
-    private void inputCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputCedulaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputCedulaActionPerformed
+    }//GEN-LAST:event_inputIDActionPerformed
 
     private void inputSpecialtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputSpecialtyActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputSpecialtyActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
+        // TODO add your handling code here:
+        Doctor new_doctor = new Doctor(
+                null, inputFullName.getText(),
+                inputEmail.getText(),
+                inputID.getText(),
+                inputAddress.getText(),
+                inputSpecialty.getText(),
+                new String(inputPassword.getPassword())
+        );
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+            QueryResponses qr = qh.insertDoctor(new_doctor);
+            if (!qr.checkErrors()) {
+                this.dispose();
+                JOptionPane.showMessageDialog(null, qr.getMessage(), "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                new Login().setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, qr.getMessage(), "Registro fallido", JOptionPane.WARNING_MESSAGE);
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Signup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Signup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Signup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Signup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+            
+        } catch (Exception ex) {
+            Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }//GEN-LAST:event_btnSignupActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Signup().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BgPanel2;
     private javax.swing.JPanel Form2;
-    private javax.swing.JButton btnMain;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnSignup;
     private javax.swing.JTextField inputAddress;
-    private javax.swing.JTextField inputCedula;
+    private javax.swing.JTextField inputEmail;
     private javax.swing.JTextField inputFullName;
-    private javax.swing.JTextField inputPassword;
+    private javax.swing.JTextField inputID;
+    private javax.swing.JPasswordField inputPassword;
     private javax.swing.JTextField inputSpecialty;
     private javax.swing.JLabel labelAddress;
     private javax.swing.JLabel labelCedula;
@@ -311,6 +323,5 @@ public class Signup extends javax.swing.JFrame {
     private javax.swing.JLabel labelSpecialty;
     private javax.swing.JLabel labelSubtitle;
     private javax.swing.JLabel labelTitle2;
-    private javax.swing.JPasswordField passwordField;
     // End of variables declaration//GEN-END:variables
 }

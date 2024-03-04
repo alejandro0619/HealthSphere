@@ -8,8 +8,10 @@ package db;
  *
  * @author Aleja
  */
+import static db.sec.PasswordHashing.hashPassword;
 import java.sql.*;
 import db.entities.Doctor;
+import java.security.NoSuchAlgorithmException;
 
 public class QueriesHandler {
     private Connection conn;
@@ -18,8 +20,23 @@ public class QueriesHandler {
         this.conn = conn;
     }
     
-    public boolean insertDoctor(Doctor medico, String password) throws SQLException {
+    public boolean check_existence(Doctor medico) throws SQLException {
+        String query = "SELECT id FROM medico WHERE cedula = ? OR correo_electronico = ?";
+        PreparedStatement statement = this.conn.prepareStatement(query);
+        statement.setString(1, medico.getCedula());
+        statement.setString(2, medico.getCorreoElectronico());
+        
+        ResultSet rs = statement.executeQuery();
+        
+        return rs.next();
+
+    }
+    
+    public QueryResponses insertDoctor(Doctor medico) throws SQLException, NoSuchAlgorithmException {
         String query = "INSERT INTO medico (id, nombre_completo, correo_electronico, cedula, direccion, especialidad, contrasena) VALUES (?,?,?,?,?,?,?)";
+
+        String hashedPassword = hashPassword(medico.getContrasena());
+        
         
         PreparedStatement statement = this.conn.prepareStatement(query);
         
@@ -30,34 +47,40 @@ public class QueriesHandler {
             statement.setString(4, medico.getCedula()); // cedula
             statement.setString(5, medico.getDireccion()); // direccion
             statement.setString(6, medico.getEspecialidad()); // especialidad
-            statement.setString(7, medico.getContrasena()); // contrasena
+            statement.setString(7, hashedPassword); // contrasena
             
-            int rowsInserted = statement.executeUpdate();
-            
-            if (rowsInserted > 0) {
-                System.out.print("Nueva fila");
-                return true;
+            if (this.check_existence(medico)) {
+                return new QueryResponses(true, "La cédula o el correo electrónico ya existe en la DB");
+                
             } else {
-                System.out.print("nada");
-                return false;
+                int insertedRows = statement.executeUpdate();
+                this.conn.close();
+                if (insertedRows > 0) {
+                   return new QueryResponses(false, "Se ha añadido correctamente el usuario");
+                } else {
+                    return new QueryResponses(true, "Un error inesperado ha sucedido, contacte a los administradores del sistema");
+                }
             }
     }
     
-    public Doctor getDoctor(String email, String password) throws SQLException {
+    
+    public Doctor getDoctor(String email, String password) throws SQLException, NoSuchAlgorithmException {
         Doctor doctor = null;
-        
         String query = "SELECT * FROM medico WHERE correo_electronico = ? AND contrasena = ?";
+        String hashedPassword = hashPassword(password);
+        
         try (PreparedStatement statement = this.conn.prepareStatement(query)) {
             statement.setString(1, email);
-            statement.setString(2, password);
+            statement.setString(2, hashedPassword);
             
             try (ResultSet rs = statement.executeQuery()) {
                 if (rs.next()) {
+                    int id = rs.getInt("id");
                     String nombreCompleto = rs.getString("nombre_completo");
                     String cedula = rs.getString("cedula");
                     String direccion = rs.getString("direccion");
                     String especialidad = rs.getString("especialidad");
-                    doctor = new Doctor(null, nombreCompleto, email, cedula, direccion, especialidad, password);
+                    doctor = new Doctor(id, nombreCompleto, email, cedula, direccion, especialidad, password);
                 }
                 // Close resources
             }
