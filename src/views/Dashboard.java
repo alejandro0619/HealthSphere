@@ -66,7 +66,12 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         labelSearch.setFont(new java.awt.Font("Hack Nerd Font Propo", 0, 14)); // NOI18N
-        labelSearch.setText("Búsqueda");
+        labelSearch.setText("Nuevo Registro");
+        labelSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                NewPatient(evt);
+            }
+        });
 
         javax.swing.GroupLayout MenuBarLayout = new javax.swing.GroupLayout(MenuBar);
         MenuBar.setLayout(MenuBarLayout);
@@ -77,9 +82,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(labelProfile)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 378, Short.MAX_VALUE)
                 .addComponent(labelRecords)
-                .addGap(45, 45, 45)
+                .addGap(37, 37, 37)
                 .addComponent(labelSearch)
-                .addGap(30, 30, 30))
+                .addGap(38, 38, 38))
         );
         MenuBarLayout.setVerticalGroup(
             MenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +136,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(BgPanelLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(Main, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
         BgPanelLayout.setVerticalGroup(
             BgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,6 +167,12 @@ public class Dashboard extends javax.swing.JFrame {
          System.out.println("en el dashboard" + SessionManager.getInstance().getCurrentUser());
         new Records().setVisible(true);
     }//GEN-LAST:event_recordsClicked
+
+    private void NewPatient(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NewPatient
+        // TODO add your handling code here:
+        this.dispose();
+        new PatientInformation().setVisible(true);
+    }//GEN-LAST:event_NewPatient
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BgPanel;
