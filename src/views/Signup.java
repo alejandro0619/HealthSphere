@@ -288,7 +288,7 @@ public class Signup extends javax.swing.JFrame {
         } else if(! new EmailChecker(inputEmail.getText()).isValid()) {
             JOptionPane.showMessageDialog(null, "El correo electrónico tiene un formato inválido", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
             return;
-        } else if (new FormValidator().isFormValid(rootPane)) {
+        } else if (new FormValidator().isFormValid(Form2) == false) {
             JOptionPane.showMessageDialog(null, "No se permiten campos vacíos ", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
             return;
         }
