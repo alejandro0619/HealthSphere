@@ -10,8 +10,7 @@ import customComps.BackgroundPanel;
 import java.sql.*;
 
 import customComps.RoundedPasswordField;
-import db.DatabaseHandler;
-import db.QueriesHandler;
+import db.dao.DoctorDAO;
 import db.entities.Doctor;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
@@ -24,16 +23,10 @@ import validations.EmailChecker;
  * @author Aleja
  */
 public class Login extends javax.swing.JFrame {
-    private DatabaseHandler dh;
-    private QueriesHandler qh;
     /**
      * Creates new form Main
      */
     public Login() {
-        //this.setContentPane(bg);
-        dh = new DatabaseHandler();
-        qh = dh.queriesHandler();
-        
         initComponents();
     }
 
@@ -203,10 +196,9 @@ public class Login extends javax.swing.JFrame {
             return;
         } 
         try {
-            Doctor doc = qh.getDoctor(inputEmail.getText(), new String(inputPassword.getPassword()));      
+            Doctor doc = new DoctorDAO().getDoctor(inputEmail.getText(), new String(inputPassword.getPassword()));      
             if (doc != null) {
                 SessionManager.getInstance().login(doc); // we add a session of the current user
-                System.out.println("en el login" + SessionManager.getInstance().getCurrentUser());
                 this.dispose();
                 new Dashboard().setVisible(true);
             } else {
@@ -226,7 +218,7 @@ public class Login extends javax.swing.JFrame {
 
     private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
         this.dispose();
-        new Signup(this.dh).setVisible(true);
+        new Signup().setVisible(true);
         
     }//GEN-LAST:event_btnSignupActionPerformed
 

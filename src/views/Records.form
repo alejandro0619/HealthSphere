@@ -90,7 +90,7 @@
                               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="detailsButton" min="-2" max="-2" attributes="0"/>
+                                      <Component id="backButton" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="SearchTxt" min="-2" pref="260" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
@@ -124,8 +124,13 @@
                               <EmptySpace pref="36" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
+<<<<<<< HEAD
                               <EmptySpace pref="34" max="32767" attributes="0"/>
                               <Component id="detailsButton" min="-2" pref="36" max="-2" attributes="0"/>
+=======
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="backButton" min="-2" pref="36" max="-2" attributes="0"/>
+>>>>>>> e1821741513927415d3ffeb65304bd2c7417ddb0
                               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -171,7 +176,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="detailsButton">
+            <Component class="javax.swing.JButton" name="backButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Hack" size="14" style="1"/>
@@ -179,7 +184,7 @@
                 <Property name="text" type="java.lang.String" value="Volver"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="detailsButtonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backButtonActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="SearchTxt">

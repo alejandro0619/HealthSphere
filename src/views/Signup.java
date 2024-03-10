@@ -8,12 +8,10 @@ import customComps.BackgroundPanel;
 import customComps.RoundedPanel;
 import customComps.RoundedPasswordField;
 import customComps.RoundedTextField;
-import db.DatabaseHandler;
-import db.QueriesHandler;
+
 import db.QueryResponses;
+import db.dao.DoctorDAO;
 import db.entities.Doctor;
-import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -26,18 +24,7 @@ import validations.IDChecker;
  * @author Aleja
  */
 public class Signup extends javax.swing.JFrame {
-    private DatabaseHandler dh;
-    private QueriesHandler qh;
-    
-    /**
-     * Creates new form Signup
-     */
-    public Signup(DatabaseHandler dh) {
-        this.dh = dh;
-        this.qh = dh.queriesHandler();
-        
-        initComponents();
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -302,7 +289,7 @@ public class Signup extends javax.swing.JFrame {
                 new String(inputPassword.getPassword())
         );
         try {
-            QueryResponses qr = qh.insertDoctor(new_doctor);
+            QueryResponses qr = new DoctorDAO().insertDoctor(new_doctor);
             if (!qr.checkErrors()) {
                 this.dispose();
                 JOptionPane.showMessageDialog(null, qr.getMessage(), "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
