@@ -13,6 +13,7 @@ import customComps.RoundedPasswordField;
 import db.DatabaseHandler;
 import db.QueriesHandler;
 import db.entities.Doctor;
+import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -117,9 +118,6 @@ public class Login extends javax.swing.JFrame {
             .addGroup(FormLayout.createSequentialGroup()
                 .addGroup(FormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FormLayout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addComponent(btnLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(FormLayout.createSequentialGroup()
                         .addGap(87, 87, 87)
                         .addGroup(FormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(labelEmail)
@@ -130,7 +128,10 @@ public class Login extends javax.swing.JFrame {
                                 .addComponent(btnSignup))
                             .addComponent(inputEmail)
                             .addComponent(labelSubtitle, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(inputPassword))))
+                            .addComponent(inputPassword)))
+                    .addGroup(FormLayout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(btnLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(94, Short.MAX_VALUE))
         );
         FormLayout.setVerticalGroup(
@@ -164,7 +165,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(BgPanelLayout.createSequentialGroup()
                 .addGap(220, 220, 220)
                 .addComponent(Form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(472, Short.MAX_VALUE))
+                .addContainerGap(504, Short.MAX_VALUE))
         );
         BgPanelLayout.setVerticalGroup(
             BgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,6 +203,8 @@ public class Login extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ha sucedido un error interno en la aplicación, por favor contacte un administrador", "Error interno", JOptionPane.ERROR_MESSAGE);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }      
         
     }//GEN-LAST:event_btnLogInActionPerformed
