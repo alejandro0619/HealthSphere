@@ -11,7 +11,7 @@ import java.sql.*;
  *
  * @author Aleja
  */
-class ConnectionHandler {
+public class ConnectionHandler {
     private final String url = "jdbc:mysql://localhost:3306/health_sphere";
     private final String username = "root";
     private final String password = "";

@@ -2,22 +2,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package db;
+package db.dao;
+
+import db.QueryResponses;
+import db.entities.Doctor;
+import static db.sec.PasswordHashing.hashPassword;
+import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import db.ConnectionHandler;
 
 /**
  *
  * @author Aleja
  */
-import static db.sec.PasswordHashing.hashPassword;
-import java.sql.*;
-import db.entities.Doctor;
-import java.security.NoSuchAlgorithmException;
-
-public class QueriesHandler {
+public class DoctorDAO {
+    
     private Connection conn;
     
-    public QueriesHandler(Connection conn) {
-        this.conn = conn;
+    public DoctorDAO() {
+        this.conn = new ConnectionHandler().getConn();
     }
     
     public boolean check_existence(Doctor medico) throws SQLException {
