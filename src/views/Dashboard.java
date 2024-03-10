@@ -59,6 +59,11 @@ public class Dashboard extends javax.swing.JFrame {
 
         labelRecords.setFont(new java.awt.Font("Hack Nerd Font Propo", 0, 14)); // NOI18N
         labelRecords.setText("Registros");
+        labelRecords.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                recordsClicked(evt);
+            }
+        });
 
         labelSearch.setFont(new java.awt.Font("Hack Nerd Font Propo", 0, 14)); // NOI18N
         labelSearch.setText("Búsqueda");
@@ -150,6 +155,12 @@ public class Dashboard extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void recordsClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recordsClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new Records().setVisible(true);
+    }//GEN-LAST:event_recordsClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BgPanel;
