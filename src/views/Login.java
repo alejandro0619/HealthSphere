@@ -13,9 +13,11 @@ import customComps.RoundedPasswordField;
 import db.DatabaseHandler;
 import db.QueriesHandler;
 import db.entities.Doctor;
+import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import validations.EmailChecker;
 
 /**
  *
@@ -82,6 +84,12 @@ public class Login extends javax.swing.JFrame {
         btnLogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogInActionPerformed(evt);
+            }
+        });
+
+        inputEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputEmailActionPerformed(evt);
             }
         });
 
@@ -190,6 +198,10 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInActionPerformed
+        if(!new EmailChecker(inputEmail.getText()).isValid()) {
+            JOptionPane.showMessageDialog(null, "El email no es válido", "Por favor verifique su correo electrónico", JOptionPane.WARNING_MESSAGE);
+            return;
+        } 
         try {
             Doctor doc = qh.getDoctor(inputEmail.getText(), new String(inputPassword.getPassword()));          
             if (doc != null) {
@@ -202,16 +214,21 @@ public class Login extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ha sucedido un error interno en la aplicación, por favor contacte un administrador", "Error interno", JOptionPane.ERROR_MESSAGE);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }      
         
     }//GEN-LAST:event_btnLogInActionPerformed
 
     private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
-        // TODO add your handling code here:
         this.dispose();
         new Signup(this.dh).setVisible(true);
         
     }//GEN-LAST:event_btnSignupActionPerformed
+
+    private void inputEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputEmailActionPerformed
+            
+    }//GEN-LAST:event_inputEmailActionPerformed
 
 
 

@@ -17,6 +17,9 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import validations.EmailChecker;
+import validations.FormValidator;
+import validations.IDChecker;
 
 /**
  *
@@ -279,8 +282,18 @@ public class Signup extends javax.swing.JFrame {
     }//GEN-LAST:event_inputSpecialtyActionPerformed
 
     private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
-        // TODO add your handling code here:
-        Doctor new_doctor = new Doctor(
+        if(! new IDChecker(inputID.getText()).isValid()) {
+            JOptionPane.showMessageDialog(null, "La cédula tiene un formato inválido", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else if(! new EmailChecker(inputEmail.getText()).isValid()) {
+            JOptionPane.showMessageDialog(null, "El correo electrónico tiene un formato inválido", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else if (new FormValidator().isFormValid(rootPane)) {
+            JOptionPane.showMessageDialog(null, "No se permiten campos vacíos ", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Doctor new_doctor;
+        new_doctor = new Doctor(
                 null, inputFullName.getText(),
                 inputEmail.getText(),
                 inputID.getText(),
