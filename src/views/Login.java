@@ -203,17 +203,21 @@ public class Login extends javax.swing.JFrame {
             return;
         } 
         try {
-            Doctor doc = qh.getDoctor(inputEmail.getText(), new String(inputPassword.getPassword()));          
+            Doctor doc = qh.getDoctor(inputEmail.getText(), new String(inputPassword.getPassword()));      
             if (doc != null) {
+                SessionManager.getInstance().login(doc); // we add a session of the current user
+                System.out.println("en el login" + SessionManager.getInstance().getCurrentUser());
                 this.dispose();
                 new Dashboard().setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "El usuario o contraseña es incorrecto", "Error en el inicio de sesión", JOptionPane.ERROR_MESSAGE);
+                return;
             }     
             
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ha sucedido un error interno en la aplicación, por favor contacte un administrador", "Error interno", JOptionPane.ERROR_MESSAGE);
+            
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }      

@@ -38,6 +38,7 @@ public class Records extends javax.swing.JFrame {
         RecordsTable = new javax.swing.JTable();
         detailsButton = new javax.swing.JButton();
         SearchTxt = new RoundedTextField();
+        detailsButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(881, 600));
@@ -64,7 +65,7 @@ public class Records extends javax.swing.JFrame {
         jScrollPane1.setViewportView(RecordsTable);
 
         detailsButton.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
-        detailsButton.setText("Detalles");
+        detailsButton.setText("Volver");
         detailsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 detailsButtonActionPerformed(evt);
@@ -75,6 +76,14 @@ public class Records extends javax.swing.JFrame {
         SearchTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SearchTxtActionPerformed(evt);
+            }
+        });
+
+        detailsButton1.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
+        detailsButton1.setText("Detalles");
+        detailsButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                detailsButton1ActionPerformed(evt);
             }
         });
 
@@ -89,14 +98,19 @@ public class Records extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(Form3Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(Form3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(Form3Layout.createSequentialGroup()
+                                .addComponent(detailsButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(SearchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(230, 230, 230))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(43, Short.MAX_VALUE))
-            .addGroup(Form3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(SearchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(131, 131, 131)
-                .addComponent(detailsButton)
-                .addGap(55, 55, 55))
+            .addGroup(Form3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Form3Layout.createSequentialGroup()
+                    .addContainerGap(678, Short.MAX_VALUE)
+                    .addComponent(detailsButton1)
+                    .addGap(45, 45, 45)))
         );
         Form3Layout.setVerticalGroup(
             Form3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,11 +119,20 @@ public class Records extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(Form3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SearchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(detailsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGroup(Form3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Form3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(SearchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(36, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Form3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(detailsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))))
+            .addGroup(Form3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Form3Layout.createSequentialGroup()
+                    .addContainerGap(449, Short.MAX_VALUE)
+                    .addComponent(detailsButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(24, 24, 24)))
         );
 
         BgPanel.setPreferredSize(new java.awt.Dimension(881, 519));
@@ -156,6 +179,10 @@ public class Records extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_SearchTxtActionPerformed
 
+    private void detailsButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailsButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_detailsButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -197,6 +224,7 @@ public class Records extends javax.swing.JFrame {
     private javax.swing.JTable RecordsTable;
     private javax.swing.JTextField SearchTxt;
     private javax.swing.JButton detailsButton;
+    private javax.swing.JButton detailsButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

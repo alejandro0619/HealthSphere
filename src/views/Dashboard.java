@@ -159,6 +159,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void recordsClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recordsClicked
         // TODO add your handling code here:
         this.dispose();
+         System.out.println("en el dashboard" + SessionManager.getInstance().getCurrentUser());
         new Records().setVisible(true);
     }//GEN-LAST:event_recordsClicked
 

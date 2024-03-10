@@ -24,7 +24,6 @@ public class FormValidator {
             if (component instanceof RoundedTextField || component instanceof RoundedPasswordField) {
                 // If it's a text field or password field, check if it's empty
                 if (((JTextComponent) component).getText().trim().isEmpty()) {
-                    System.out.println("Field is empty: " + component.getName());
                     return false; // If empty, return false
                 }
             }
