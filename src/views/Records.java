@@ -36,7 +36,7 @@ public class Records extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         RecordsTable = new javax.swing.JTable();
-        detailsButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         SearchTxt = new RoundedTextField();
         detailsButton1 = new javax.swing.JButton();
 
@@ -64,11 +64,11 @@ public class Records extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(RecordsTable);
 
-        detailsButton.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
-        detailsButton.setText("Volver");
-        detailsButton.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
+        backButton.setText("Volver");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                detailsButtonActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
@@ -100,12 +100,12 @@ public class Records extends javax.swing.JFrame {
                         .addGap(37, 37, 37)
                         .addGroup(Form3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(Form3Layout.createSequentialGroup()
-                                .addComponent(detailsButton)
+                                .addComponent(backButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(SearchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(230, 230, 230))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
             .addGroup(Form3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Form3Layout.createSequentialGroup()
                     .addContainerGap(678, Short.MAX_VALUE)
@@ -125,8 +125,8 @@ public class Records extends javax.swing.JFrame {
                         .addComponent(SearchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(36, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Form3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                        .addComponent(detailsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23))))
             .addGroup(Form3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Form3Layout.createSequentialGroup()
@@ -171,9 +171,11 @@ public class Records extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void detailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailsButtonActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_detailsButtonActionPerformed
+        this.dispose();
+        new Dashboard().setVisible(true);
+    }//GEN-LAST:event_backButtonActionPerformed
 
     private void SearchTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchTxtActionPerformed
         // TODO add your handling code here:
@@ -223,7 +225,7 @@ public class Records extends javax.swing.JFrame {
     private javax.swing.JPanel Form3;
     private javax.swing.JTable RecordsTable;
     private javax.swing.JTextField SearchTxt;
-    private javax.swing.JButton detailsButton;
+    private javax.swing.JButton backButton;
     private javax.swing.JButton detailsButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

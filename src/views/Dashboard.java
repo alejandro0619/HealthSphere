@@ -82,9 +82,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(labelProfile)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 378, Short.MAX_VALUE)
                 .addComponent(labelRecords)
-                .addGap(37, 37, 37)
+                .addGap(41, 41, 41)
                 .addComponent(labelSearch)
-                .addGap(38, 38, 38))
+                .addGap(34, 34, 34))
         );
         MenuBarLayout.setVerticalGroup(
             MenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,7 +164,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void recordsClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recordsClicked
         // TODO add your handling code here:
         this.dispose();
-        //new Records().setVisible(true);
+        new Records().setVisible(true);
     }//GEN-LAST:event_recordsClicked
 
     private void NewPatient(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NewPatient
