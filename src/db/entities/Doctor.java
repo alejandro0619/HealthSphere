@@ -19,7 +19,7 @@ public class Doctor {
 
     // Constructor
     public Doctor(Integer id, String nombreCompleto, String correoElectronico, String cedula, String direccion, String especialidad, String contrasena) {
-        this.id = null;
+        this.id = id;
         this.nombreCompleto = nombreCompleto;
         this.correoElectronico = correoElectronico;
         this.cedula = cedula;

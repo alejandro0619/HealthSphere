@@ -94,7 +94,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(labelProfile)
                     .addComponent(labelRecords)
                     .addComponent(labelSearch))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout MainLayout = new javax.swing.GroupLayout(Main);
@@ -102,16 +102,18 @@ public class Dashboard extends javax.swing.JFrame {
         MainLayout.setHorizontalGroup(
             MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainLayout.createSequentialGroup()
-                .addGap(75, 75, 75)
                 .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(MenuBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(MainLayout.createSequentialGroup()
+                        .addGap(75, 75, 75)
                         .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(63, 63, 63)
                         .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lableTitle)
-                            .addComponent(labelSubtitle))))
-                .addContainerGap(87, Short.MAX_VALUE))
+                            .addComponent(labelSubtitle)))
+                    .addGroup(MainLayout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(MenuBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         MainLayout.setVerticalGroup(
             MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,9 +126,9 @@ public class Dashboard extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(labelSubtitle)
                         .addGap(48, 48, 48)))
-                .addGap(56, 56, 56)
+                .addGap(54, 54, 54)
                 .addComponent(MenuBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74))
+                .addGap(67, 67, 67))
         );
 
         javax.swing.GroupLayout BgPanelLayout = new javax.swing.GroupLayout(BgPanel);
@@ -136,7 +138,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(BgPanelLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(Main, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         BgPanelLayout.setVerticalGroup(
             BgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

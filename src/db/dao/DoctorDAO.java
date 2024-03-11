@@ -80,6 +80,7 @@ public class DoctorDAO {
             statement.setString(2, hashedPassword);
             
             try (ResultSet rs = statement.executeQuery()) {
+
                 if (rs.next()) {
                     int id = rs.getInt("id");
                     String nombreCompleto = rs.getString("nombre_completo");
@@ -87,6 +88,29 @@ public class DoctorDAO {
                     String direccion = rs.getString("direccion");
                     String especialidad = rs.getString("especialidad");
                     doctor = new Doctor(id, nombreCompleto, email, cedula, direccion, especialidad, password);
+                    System.out.println(doctor.getId());
+                }
+                // Close resources
+            }
+        }
+        return doctor;
+    }
+    
+    public Doctor getDoctorById(int id) throws SQLException {
+        Doctor doctor = null;
+        String query = "SELECT * FROM medico WHERE id = ?";
+        try (PreparedStatement statement = this.conn.prepareStatement(query)) {
+            statement.setInt(1, id);
+            
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    String nombreCompleto = rs.getString("nombre_completo");
+                    String cedula = rs.getString("cedula");
+                    String direccion = rs.getString("direccion");
+                    String especialidad = rs.getString("especialidad");
+                    String email = rs.getString("correo_electronico");
+                    
+                    doctor = new Doctor(id, nombreCompleto, email, cedula, direccion, especialidad, null);
                 }
                 // Close resources
             }
