@@ -9,6 +9,10 @@ package db.entities;
  * @author Aleja
  */
 public class Doctor {
+
+    public static int getIdMedico() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     private Integer id;
     private String nombreCompleto;
     private String correoElectronico;

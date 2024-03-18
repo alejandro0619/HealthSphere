@@ -10,6 +10,7 @@ import customComps.RoundedPanel;
 import customComps.RoundedTextField;
 import db.dao.PatientDAO;
 import db.entities.Patient;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -52,7 +53,6 @@ public class PatientInformation extends javax.swing.JFrame {
         txtName = new RoundedTextField();
         txtLastName = new RoundedTextField();
         txtBirth = new RoundedTextField();
-        txtBirthPlace = new RoundedTextField();
         labelBirth = new javax.swing.JLabel();
         labelBirthPlace = new javax.swing.JLabel();
         labelAddress = new javax.swing.JLabel();
@@ -64,6 +64,7 @@ public class PatientInformation extends javax.swing.JFrame {
         txtPhone2 = new RoundedTextField();
         txtEmail = new RoundedTextField();
         jButton1 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -102,15 +103,60 @@ public class PatientInformation extends javax.swing.JFrame {
         labelId.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
         labelId.setText("Cédula o Pasaporte");
 
+        txtId.setForeground(new java.awt.Color(153, 153, 153));
+        txtId.setText("V00000000");
+        txtId.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtIdFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtIdFocusLost(evt);
+            }
+        });
+
         labelName.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
         labelName.setText("Nombres");
 
         labelLastName.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
         labelLastName.setText("Apellidos");
 
+        txtName.setForeground(new java.awt.Color(153, 153, 153));
+        txtName.setText("Ingrese Nombres");
+        txtName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNameFocusLost(evt);
+            }
+        });
+
+        txtLastName.setForeground(new java.awt.Color(153, 153, 153));
+        txtLastName.setText("Ingrese Apellidos");
+        txtLastName.setToolTipText("");
+        txtLastName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtLastNameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtLastNameFocusLost(evt);
+            }
+        });
         txtLastName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLastNameActionPerformed(evt);
+            }
+        });
+
+        txtBirth.setForeground(new java.awt.Color(153, 153, 153));
+        txtBirth.setText("Año-Mes-Dia");
+        txtBirth.setToolTipText("");
+        txtBirth.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtBirthFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtBirthFocusLost(evt);
             }
         });
 
@@ -123,6 +169,16 @@ public class PatientInformation extends javax.swing.JFrame {
         labelAddress.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
         labelAddress.setText("Dirección");
 
+        txtAddress.setForeground(new java.awt.Color(153, 153, 153));
+        txtAddress.setText("Ingrese Direccion");
+        txtAddress.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtAddressFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtAddressFocusLost(evt);
+            }
+        });
         txtAddress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAddressActionPerformed(evt);
@@ -138,6 +194,40 @@ public class PatientInformation extends javax.swing.JFrame {
         labelEmail.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
         labelEmail.setText("Correo Electrónico");
 
+        txtPhone.setForeground(new java.awt.Color(153, 153, 153));
+        txtPhone.setText("+58 212 1234567");
+        txtPhone.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPhoneFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPhoneFocusLost(evt);
+            }
+        });
+
+        txtPhone2.setForeground(new java.awt.Color(153, 153, 153));
+        txtPhone2.setText("0212 1234567");
+        txtPhone2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPhone2FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPhone2FocusLost(evt);
+            }
+        });
+
+        txtEmail.setForeground(new java.awt.Color(153, 153, 153));
+        txtEmail.setText("ejemplo@gmail.com");
+        txtEmail.setToolTipText("");
+        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtEmailFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEmailFocusLost(evt);
+            }
+        });
+
         jButton1.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
         jButton1.setText("Siguiente");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -145,6 +235,9 @@ public class PatientInformation extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Amazonas", "Anzoátegui", "Apure", "Aragua", "Barinas", "Bolívar", "Carabobo", "Cojedes", "Delta Amacuro", "Distrito Capital", "Falcón", "Guárico", "Lara", "Mérida", "Miranda", "Monagas", "Nueva Esparta", "Portuguesa", "Sucre", "Táchira", "Trujillo", "Vargas", "Yaracuy", "Zulia" }));
+        jComboBox1.setToolTipText("");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -174,10 +267,10 @@ public class PatientInformation extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(labelName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelBirthPlace, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                            .addComponent(txtBirthPlace)
                             .addComponent(LabelSecondPhone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtPhone2)
-                            .addComponent(txtName))
+                            .addComponent(txtName)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(48, 48, 48)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(labelLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -217,9 +310,8 @@ public class PatientInformation extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtBirth)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtBirthPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(jComboBox1))
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(labelPhone)
@@ -233,7 +325,7 @@ public class PatientInformation extends javax.swing.JFrame {
                         .addComponent(txtPhone2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
                 .addGap(17, 17, 17))
         );
 
@@ -260,12 +352,43 @@ public class PatientInformation extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
         jLabel5.setText("Alergias");
 
+        bloodTypeInput.setForeground(new java.awt.Color(153, 153, 153));
+        bloodTypeInput.setText("Ingrese Grupo Sanguineo");
+        bloodTypeInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                bloodTypeInputFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                bloodTypeInputFocusLost(evt);
+            }
+        });
+
+        PathologiesInput.setForeground(new java.awt.Color(153, 153, 153));
+        PathologiesInput.setText("Ingrese Patologias");
+        PathologiesInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                PathologiesInputFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                PathologiesInputFocusLost(evt);
+            }
+        });
         PathologiesInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PathologiesInputActionPerformed(evt);
             }
         });
 
+        allergiesInput.setForeground(new java.awt.Color(153, 153, 153));
+        allergiesInput.setText("Ingrese Alergias");
+        allergiesInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                allergiesInputFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                allergiesInputFocusLost(evt);
+            }
+        });
         allergiesInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 allergiesInputActionPerformed(evt);
@@ -274,6 +397,17 @@ public class PatientInformation extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
         jLabel6.setText("Estado");
+
+        statusInput.setForeground(new java.awt.Color(153, 153, 153));
+        statusInput.setText("Estado del Paciente");
+        statusInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                statusInputFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                statusInputFocusLost(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
         jLabel7.setText("Género");
@@ -509,6 +643,198 @@ public class PatientInformation extends javax.swing.JFrame {
         new FileChooser().setVisible(true);
     }//GEN-LAST:event_submitFilesActionPerformed
 
+    private void txtIdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdFocusGained
+
+        if(txtId.getText().equals("V00000000")){
+            txtId.setText("");
+            txtId.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_txtIdFocusGained
+
+    private void txtIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdFocusLost
+    
+         if(txtId.getText().equals("")){
+            txtId.setText("V00000000");
+            txtId.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtIdFocusLost
+
+    private void txtBirthFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBirthFocusGained
+        // TODO add your handling code here:
+        if(txtBirth.getText().equals("Año-Mes-Dia")){
+            txtBirth.setText("");
+            txtBirth.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_txtBirthFocusGained
+
+    private void txtBirthFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBirthFocusLost
+       
+        if(txtBirth.getText().equals("")){
+            txtBirth.setText("Año-Mes-Dia");
+            txtBirth.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtBirthFocusLost
+
+    private void txtPhoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneFocusGained
+       
+        if(txtPhone.getText().equals("+58 212 1234567")){
+            txtPhone.setText("");
+            txtPhone.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_txtPhoneFocusGained
+
+    private void txtPhoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneFocusLost
+    
+         if(txtPhone.getText().equals("")){
+            txtPhone.setText("+58 212 1234567");
+            txtPhone.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtPhoneFocusLost
+
+    private void txtNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNameFocusGained
+        // TODO add your handling code here:
+        if(txtName.getText().equals("Ingrese Nombres")){
+            txtName.setText("");
+            txtName.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_txtNameFocusGained
+
+    private void txtNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNameFocusLost
+        // TODO add your handling code here:
+        if(txtName.getText().equals("")){
+            txtName.setText("Ingrese Nombres");
+            txtName.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtNameFocusLost
+
+    private void txtLastNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLastNameFocusGained
+        // TODO add your handling code here:
+        if(txtLastName.getText().equals("Ingrese Apellidos")){
+            txtLastName.setText("");
+           txtLastName.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_txtLastNameFocusGained
+
+    private void txtLastNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLastNameFocusLost
+        // TODO add your handling code here:
+         if(txtLastName.getText().equals("")){
+            txtLastName.setText("Ingrese Apellidos");
+           txtLastName.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtLastNameFocusLost
+
+    private void txtAddressFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAddressFocusGained
+        // TODO add your handling code here:
+        if(txtAddress.getText().equals("Ingrese Direccion")){
+            txtAddress.setText("");
+            txtAddress.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_txtAddressFocusGained
+
+    private void txtAddressFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAddressFocusLost
+        // TODO add your handling code here:
+        if(txtAddress.getText().equals("")){
+            txtAddress.setText("Ingrese Direccion");
+            txtAddress.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtAddressFocusLost
+
+    private void txtPhone2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhone2FocusGained
+        // TODO add your handling code here:
+        if(txtPhone2.getText().equals("0212 1234567")){
+            txtPhone2.setText("");
+            txtPhone2.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_txtPhone2FocusGained
+
+    private void txtPhone2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhone2FocusLost
+        // TODO add your handling code here:
+        if(txtPhone2.getText().equals("")){
+            txtPhone2.setText("0212 1234567");
+            txtPhone2.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtPhone2FocusLost
+
+    private void txtEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusGained
+        // TODO add your handling code here:
+        if(txtEmail.getText().equals("ejemplo@gmail.com")){
+            txtEmail.setText("");
+            txtEmail.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_txtEmailFocusGained
+
+    private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
+        // TODO add your handling code here:
+        if(txtEmail.getText().equals("")){
+            txtEmail.setText("ejemplo@gmail.com");
+            txtEmail.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtEmailFocusLost
+
+    private void bloodTypeInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bloodTypeInputFocusGained
+        // TODO add your handling code here:
+        if(bloodTypeInput.getText().equals("Ingrese Grupo Sanguineo")){
+            bloodTypeInput.setText("");
+            bloodTypeInput.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_bloodTypeInputFocusGained
+
+    private void bloodTypeInputFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bloodTypeInputFocusLost
+        // TODO add your handling code here:
+        if(bloodTypeInput.getText().equals("")){
+            bloodTypeInput.setText("Ingrese Grupo Sanguineo");
+            bloodTypeInput.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_bloodTypeInputFocusLost
+
+    private void statusInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_statusInputFocusGained
+        // TODO add your handling code here:
+        if(statusInput.getText().equals("Estado del Paciente")){
+            statusInput.setText("");
+            statusInput.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_statusInputFocusGained
+
+    private void statusInputFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_statusInputFocusLost
+        // TODO add your handling code here:
+        if(statusInput.getText().equals("")){
+            statusInput.setText("Estado del Paciente");
+            statusInput.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_statusInputFocusLost
+
+    private void PathologiesInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PathologiesInputFocusGained
+        // TODO add your handling code here:
+        if(PathologiesInput.getText().equals("Ingrese Patologias")){
+            PathologiesInput.setText("");
+            PathologiesInput.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_PathologiesInputFocusGained
+
+    private void PathologiesInputFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PathologiesInputFocusLost
+        // TODO add your handling code here:
+        if(PathologiesInput.getText().equals("")){
+            PathologiesInput.setText("Ingrese Patologias");
+            PathologiesInput.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_PathologiesInputFocusLost
+
+    private void allergiesInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_allergiesInputFocusGained
+        // TODO add your handling code here:
+        if(allergiesInput.getText().equals("Ingrese Alergias")){
+            allergiesInput.setText("");
+            allergiesInput.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_allergiesInputFocusGained
+
+    private void allergiesInputFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_allergiesInputFocusLost
+        // TODO add your handling code here:
+        if(allergiesInput.getText().equals("")){
+            allergiesInput.setText("Ingrese Alergias");
+            allergiesInput.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_allergiesInputFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -555,6 +881,7 @@ public class PatientInformation extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> genreInput;
     private javax.swing.JComboBox<String> insurance;
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFileChooser jFileChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -585,7 +912,6 @@ public class PatientInformation extends javax.swing.JFrame {
     private javax.swing.JButton submitFiles;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtBirth;
-    private javax.swing.JTextField txtBirthPlace;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtLastName;

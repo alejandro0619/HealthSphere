@@ -53,7 +53,7 @@ public class DoctorDAO {
             statement.setString(4, medico.getCedula()); // cedula
             statement.setString(5, medico.getDireccion()); // direccion
             statement.setString(6, medico.getEspecialidad()); // especialidad
-            statement.setString(7, hashedPassword); // contrasena
+            statement.setString(7, hashedPassword); // contraseña
             
             if (this.check_existence(medico)) {
                 return new QueryResponses(true, "La cédula o el correo electrónico ya existe en la DB");

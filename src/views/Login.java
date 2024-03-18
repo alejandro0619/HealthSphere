@@ -12,6 +12,7 @@ import java.sql.*;
 import customComps.RoundedPasswordField;
 import db.dao.DoctorDAO;
 import db.entities.Doctor;
+import java.awt.Color;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -80,6 +81,16 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        inputEmail.setForeground(new java.awt.Color(153, 153, 153));
+        inputEmail.setText("ejemplo@gmail.com");
+        inputEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inputEmailFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inputEmailFocusLost(evt);
+            }
+        });
         inputEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputEmailActionPerformed(evt);
@@ -106,6 +117,16 @@ public class Login extends javax.swing.JFrame {
         labelPassword1.setText("¿No tienes cuenta?");
 
         inputPassword.setFont(new java.awt.Font("Hack Nerd Font Propo", 0, 14)); // NOI18N
+        inputPassword.setForeground(new java.awt.Color(153, 153, 153));
+        inputPassword.setText("Ingrese Contraseña");
+        inputPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inputPasswordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inputPasswordFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout FormLayout = new javax.swing.GroupLayout(Form);
         Form.setLayout(FormLayout);
@@ -225,6 +246,38 @@ public class Login extends javax.swing.JFrame {
     private void inputEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputEmailActionPerformed
             
     }//GEN-LAST:event_inputEmailActionPerformed
+
+    private void inputEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputEmailFocusGained
+        // TODO add your handling code here:
+         if(inputEmail.getText().equals("ejemplo@gmail.com")){
+            inputEmail.setText("");
+            inputEmail.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_inputEmailFocusGained
+
+    private void inputEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputEmailFocusLost
+        // TODO add your handling code here:
+        if(inputEmail.getText().equals("")){
+            inputEmail.setText("ejemplo@gmail.com");
+            inputEmail.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_inputEmailFocusLost
+
+    private void inputPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputPasswordFocusGained
+        // TODO add your handling code here:
+        if(inputPassword.getText().equals("Ingrese Contraseña")){
+            inputPassword.setText("");
+            inputPassword.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_inputPasswordFocusGained
+
+    private void inputPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputPasswordFocusLost
+        // TODO add your handling code here:
+         if(inputPassword.getText().equals("")){
+            inputPassword.setText("Ingrese Contraseña");
+            inputPassword.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_inputPasswordFocusLost
 
 
 

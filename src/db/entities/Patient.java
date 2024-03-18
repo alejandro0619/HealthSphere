@@ -11,6 +11,10 @@ package db.entities;
 import java.util.Date;
 
 public class Patient {
+
+    public static String getIdPaciente() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     private String phoneNumber1;
     private String phoneNumber2;
     private String fullName;

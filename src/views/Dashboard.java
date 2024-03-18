@@ -56,6 +56,11 @@ public class Dashboard extends javax.swing.JFrame {
 
         labelProfile.setFont(new java.awt.Font("Hack Nerd Font Propo", 0, 14)); // NOI18N
         labelProfile.setText("Perfil");
+        labelProfile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                profileClicked(evt);
+            }
+        });
 
         labelRecords.setFont(new java.awt.Font("Hack Nerd Font Propo", 0, 14)); // NOI18N
         labelRecords.setText("Registros");
@@ -174,6 +179,12 @@ public class Dashboard extends javax.swing.JFrame {
         this.dispose();
         new PatientInformation().setVisible(true);
     }//GEN-LAST:event_NewPatient
+
+    private void profileClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new Profile().setVisible(true);
+    }//GEN-LAST:event_profileClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BgPanel;
