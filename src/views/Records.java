@@ -8,6 +8,7 @@ import customComps.BackgroundPanel;
 import customComps.RoundedButton;
 import customComps.RoundedPanel;
 import customComps.RoundedTextField;
+import java.util.Date;
 
 /**
  *
@@ -22,6 +23,7 @@ public class Records extends javax.swing.JFrame {
         initComponents();
     }
 
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -215,7 +217,7 @@ public class Records extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Records().setVisible(true);
+                
             }
         });
     }

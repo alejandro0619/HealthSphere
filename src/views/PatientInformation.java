@@ -9,17 +9,21 @@ import customComps.RoundedButton;
 import customComps.RoundedPanel;
 import customComps.RoundedTextField;
 import db.dao.PatientDAO;
-import db.entities.Patient;
+import db.dao.RecordsDAO;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import validations.EmailChecker;
 import validations.FormValidator;
 import validations.PhoneChecker;
+import db.entities.Patient;
+import db.entities.Record;
+
 
 /**
  *
@@ -76,8 +80,6 @@ public class PatientInformation extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         bloodTypeInput = new RoundedTextField();
-        PathologiesInput = new RoundedTextField();
-        allergiesInput = new RoundedTextField();
         jLabel6 = new javax.swing.JLabel();
         statusInput = new RoundedTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -87,7 +89,8 @@ public class PatientInformation extends javax.swing.JFrame {
         genreInput = new javax.swing.JComboBox<>();
         back = new javax.swing.JButton();
         insurance = new javax.swing.JComboBox<>();
-        submitFiles = new javax.swing.JButton();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox3 = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jFileChooser2 = new javax.swing.JFileChooser();
 
@@ -202,7 +205,8 @@ public class PatientInformation extends javax.swing.JFrame {
         labelEmail.setText("Correo Electrónico");
 
         txtPhone.setForeground(new java.awt.Color(153, 153, 153));
-        txtPhone.setText("+58 212 1234567");
+        txtPhone.setText("+58212-1234567");
+        txtPhone.setToolTipText("");
         txtPhone.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtPhoneFocusGained(evt);
@@ -213,13 +217,18 @@ public class PatientInformation extends javax.swing.JFrame {
         });
 
         txtPhone2.setForeground(new java.awt.Color(153, 153, 153));
-        txtPhone2.setText("0212 1234567");
+        txtPhone2.setText("0212-1234567");
         txtPhone2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtPhone2FocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtPhone2FocusLost(evt);
+            }
+        });
+        txtPhone2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPhone2ActionPerformed(evt);
             }
         });
 
@@ -290,7 +299,7 @@ public class PatientInformation extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addGap(60, 60, 60))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -331,9 +340,9 @@ public class PatientInformation extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtPhone2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(27, 27, 27)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                .addGap(17, 17, 17))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46))
         );
 
         TabViews.addTab("Información Personal ", jPanel1);
@@ -367,38 +376,6 @@ public class PatientInformation extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 bloodTypeInputFocusLost(evt);
-            }
-        });
-
-        PathologiesInput.setForeground(new java.awt.Color(153, 153, 153));
-        PathologiesInput.setText("Ingrese Patologias");
-        PathologiesInput.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                PathologiesInputFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                PathologiesInputFocusLost(evt);
-            }
-        });
-        PathologiesInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PathologiesInputActionPerformed(evt);
-            }
-        });
-
-        allergiesInput.setForeground(new java.awt.Color(153, 153, 153));
-        allergiesInput.setText("Ingrese Alergias");
-        allergiesInput.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                allergiesInputFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                allergiesInputFocusLost(evt);
-            }
-        });
-        allergiesInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                allergiesInputActionPerformed(evt);
             }
         });
 
@@ -445,13 +422,9 @@ public class PatientInformation extends javax.swing.JFrame {
 
         insurance.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sí poseo seguro.", "No poseo seguro." }));
 
-        submitFiles.setFont(new java.awt.Font("Hack", 1, 18)); // NOI18N
-        submitFiles.setText("Subir archivo");
-        submitFiles.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitFilesActionPerformed(evt);
-            }
-        });
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sí poseo", "No poseo" }));
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sí poseo", "No poseo" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -479,22 +452,21 @@ public class PatientInformation extends javax.swing.JFrame {
                                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(statusInput))
                                         .addGap(74, 74, 74)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(PathologiesInput, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(genreInput, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(genreInput, 0, 220, Short.MAX_VALUE)
+                                            .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGap(60, 60, 60)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(allergiesInput, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(insurance, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                                            .addComponent(insurance, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                 .addGap(0, 64, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jScrollPane1)
-                                .addGap(18, 18, 18)
-                                .addComponent(submitFiles)))))
+                                .addGap(194, 194, 194)))))
                 .addGap(17, 17, 17))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -515,9 +487,11 @@ public class PatientInformation extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PathologiesInput, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bloodTypeInput, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(allergiesInput, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -531,19 +505,13 @@ public class PatientInformation extends javax.swing.JFrame {
                         .addComponent(statusInput, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21)
                 .addComponent(jLabel8)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(submitFiles, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)))
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(savePatientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         TabViews.addTab("Información Médica", jPanel2);
@@ -619,14 +587,6 @@ public class PatientInformation extends javax.swing.JFrame {
         TabViews.setSelectedIndex(1);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void PathologiesInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PathologiesInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PathologiesInputActionPerformed
-
-    private void allergiesInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allergiesInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_allergiesInputActionPerformed
-
     private void savePatientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePatientButtonActionPerformed
         // TODO add your handling code here:
         if (FormValidator.isFormValid(rootPane) == false) {
@@ -650,6 +610,23 @@ public class PatientInformation extends javax.swing.JFrame {
             );
             
             new PatientDAO().insertPatient(new_patient);
+            int patientId = new RecordsDAO().getLastInsertId();
+            System.out.print(patientId);
+            Record new_record = new Record(
+                    null, // id
+                    new java.sql.Date(new Date().getTime()),// fecha actual
+                    (String) jComboBox2.getSelectedItem(),// alergias
+                    statusInput.getText(),// descrip alergias
+                    (String) jComboBox3.getSelectedItem(),// patologias
+                    (String) genreInput.getSelectedItem(),// genero
+                    jTextArea1.getText(), //descripción del reporte
+                    patientId,
+                    SessionManager.getInstance().getCurrentUser()
+            );
+            
+           
+            new RecordsDAO().insertRecord(new_record);
+            
             this.dispose();
             JOptionPane.showMessageDialog(null, "Registro Exitoso", "Paciente añadido correctamente", JOptionPane.INFORMATION_MESSAGE);
             new Dashboard().setVisible(true);
@@ -658,17 +635,14 @@ public class PatientInformation extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(PatientInformation.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+       
     }//GEN-LAST:event_savePatientButtonActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
         TabViews.setSelectedIndex(0);
     }//GEN-LAST:event_backActionPerformed
-
-    private void submitFilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitFilesActionPerformed
-        // TODO add your handling code here:
-        new FileChooser().setVisible(true);
-    }//GEN-LAST:event_submitFilesActionPerformed
 
     private void txtIdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdFocusGained
 
@@ -704,7 +678,7 @@ public class PatientInformation extends javax.swing.JFrame {
 
     private void txtPhoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneFocusGained
        
-        if(txtPhone.getText().equals("+58 212-1234567")){
+        if(txtPhone.getText().equals("+58212-1234567")){
             txtPhone.setText("");
             txtPhone.setForeground(new Color(0,0,0));
         }
@@ -713,7 +687,7 @@ public class PatientInformation extends javax.swing.JFrame {
     private void txtPhoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneFocusLost
     
          if(txtPhone.getText().equals("")){
-            txtPhone.setText("+58 212-1234567");
+            txtPhone.setText("+58212-1234567");
             txtPhone.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_txtPhoneFocusLost
@@ -830,41 +804,13 @@ public class PatientInformation extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_statusInputFocusLost
 
-    private void PathologiesInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PathologiesInputFocusGained
-        // TODO add your handling code here:
-        if(PathologiesInput.getText().equals("Ingrese Patologias")){
-            PathologiesInput.setText("");
-            PathologiesInput.setForeground(new Color(0,0,0));
-        }
-    }//GEN-LAST:event_PathologiesInputFocusGained
-
-    private void PathologiesInputFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PathologiesInputFocusLost
-        // TODO add your handling code here:
-        if(PathologiesInput.getText().equals("")){
-            PathologiesInput.setText("Ingrese Patologias");
-            PathologiesInput.setForeground(new Color(153,153,153));
-        }
-    }//GEN-LAST:event_PathologiesInputFocusLost
-
-    private void allergiesInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_allergiesInputFocusGained
-        // TODO add your handling code here:
-        if(allergiesInput.getText().equals("Ingrese Alergias")){
-            allergiesInput.setText("");
-            allergiesInput.setForeground(new Color(0,0,0));
-        }
-    }//GEN-LAST:event_allergiesInputFocusGained
-
-    private void allergiesInputFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_allergiesInputFocusLost
-        // TODO add your handling code here:
-        if(allergiesInput.getText().equals("")){
-            allergiesInput.setText("Ingrese Alergias");
-            allergiesInput.setForeground(new Color(153,153,153));
-        }
-    }//GEN-LAST:event_allergiesInputFocusLost
-
     private void txtBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBirthActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBirthActionPerformed
+
+    private void txtPhone2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhone2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPhone2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -904,15 +850,15 @@ public class PatientInformation extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BgPanel2;
     private javax.swing.JLabel LabelSecondPhone;
-    private javax.swing.JTextField PathologiesInput;
     private javax.swing.JTabbedPane TabViews;
-    private javax.swing.JTextField allergiesInput;
     private javax.swing.JButton back;
     private javax.swing.JTextField bloodTypeInput;
     private javax.swing.JComboBox<String> genreInput;
     private javax.swing.JComboBox<String> insurance;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JFileChooser jFileChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -940,7 +886,6 @@ public class PatientInformation extends javax.swing.JFrame {
     private javax.swing.JLabel labelTittle;
     private javax.swing.JButton savePatientButton;
     private javax.swing.JTextField statusInput;
-    private javax.swing.JButton submitFiles;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtBirth;
     private javax.swing.JTextField txtEmail;

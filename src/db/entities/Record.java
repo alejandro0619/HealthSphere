@@ -10,7 +10,7 @@ package db.entities;
  */
 import java.util.Date;
 
-public class Records{
+public class Record{
     private Integer id;
     private Date fecha_emision;
     private String alergias;
@@ -19,9 +19,9 @@ public class Records{
     private String descrip_patologias;
     private String descrip_reporte;
     private Integer id_paciente;
-    private Integer id_medico;
+    private Doctor medico;
     
-    public Records(int id, Date fecha_emision, String alergias, String descrip_alergias, String patologias, String descrip_patologias, String descrip_reporte,Integer id_paciente,Integer id_medico){
+    public Record(Integer id,Date fecha_emision, String alergias, String descrip_alergias, String patologias, String descrip_patologias, String descrip_reporte, Integer id_paciente, Doctor medico){
         this.id = id;
         this.fecha_emision = fecha_emision;
         this.alergias = alergias;
@@ -30,11 +30,11 @@ public class Records{
         this.descrip_patologias = descrip_patologias;
         this.descrip_reporte = descrip_reporte;
         this.id_paciente = id_paciente;
-        this.id_medico = id_medico;
+        this.medico = medico;
     
     }
-    
-    
+
+   
      public int getId() {
         return id;
     }
@@ -98,12 +98,11 @@ public class Records{
     public void setIdPaciente(int id) {
         this.id_paciente = id_paciente;
     }
-    public int getIdMedico() {
-        return id_medico;
+    
+    public Doctor getMedico() {
+        return medico;
     }
 
-    public void setIdMedico(int id) {
-        this.id_medico = id_medico;
-    }
+    
     
 }

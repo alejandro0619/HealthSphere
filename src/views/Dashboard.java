@@ -177,13 +177,15 @@ public class Dashboard extends javax.swing.JFrame {
     private void recordsClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recordsClicked
         // TODO add your handling code here:
         this.dispose();
-        new Records().setVisible(true);
+        
     }//GEN-LAST:event_recordsClicked
 
     private void NewPatient(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NewPatient
         // TODO add your handling code here:
         this.dispose();
         new PatientInformation().setVisible(true);
+        System.out.print(SessionManager.getInstance().getCurrentUser().getNombreCompleto());
+        System.out.print(SessionManager.getInstance().getCurrentUser().getId());
     }//GEN-LAST:event_NewPatient
 
     private void profileClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileClicked

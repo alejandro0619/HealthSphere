@@ -9,7 +9,7 @@ import db.QueryResponses;
 import db.entities.Doctor;
 import db.entities.Patient;
 import java.sql.Connection;
-import db.entities.Records;
+import db.entities.Record;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,8 +28,16 @@ public class RecordsDAO {
     public RecordsDAO(){
         this.conn = new ConnectionHandler().getConn();
     }
-    public QueryResponses insertRecord(Records reporte)throws SQLException{
-        String query = "INSERT INTO reporte (id, fecha_emision, alergias, descrip_alergias, patologias, descrip_patologias, descrip_reportes, id_medico, id_paciente) VALUES (?,?,?,?,?,?,?,?)";
+    public Integer getLastInsertId() throws SQLException{
+        ResultSet rs = this.conn.createStatement().executeQuery("SELECT LAST_INSERT_ID()");
+        if(rs.next()){
+            return rs.getInt(1);
+        }
+        return null;
+    }
+ 
+    public QueryResponses insertRecord(Record reporte)throws SQLException{
+        String query = "INSERT INTO reporte (id, fecha_emision, alergias, descrip_alergias, patologias, descrip_patologias, descrip_reporte, id_medico, id_paciente) VALUES (?,?,?,?,?,?,?,?,?)";
 
         PreparedStatement statement = this.conn.prepareStatement(query);
 
@@ -40,7 +48,7 @@ public class RecordsDAO {
          statement.setString(5, reporte.getPatologias());
          statement.setString(6, reporte.getDescripPatologias());
          statement.setString(7, reporte.getDescripReporte());
-         statement.setInt(8, reporte.getIdMedico());
+         statement.setInt(8, reporte.getMedico().getId());
          statement.setInt(9, reporte.getIdPaciente());
          
          int insertedRows = statement.executeUpdate(); // filas afectadas 
@@ -51,13 +59,13 @@ public class RecordsDAO {
                 return new QueryResponses(true, "No se ha podido obtener reporte");
             }
     }
-    public Records getRecordByID(String ID) throws SQLException {
+    public Record getRecordByID(String ID) throws SQLException {
         String query = "SELECT * FROM reporte WHERE id = ?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, ID);
             try (ResultSet rs = statement.executeQuery()) {
                 if (rs.next()) {
-                   return extractRecords(rs);
+                   //return extractRecords(rs);
                 }
             }
         }
@@ -65,35 +73,23 @@ public class RecordsDAO {
     }
   
     
-    public List<Records> getAllRecords() throws SQLException {
-        List<Records> Records = new ArrayList<>();
+    public List<Record> getAllRecords() throws SQLException {
+        List<Record> Records = new ArrayList<>();
         String query = "SELECT * FROM reporte WHERE id_medico = ? AND id_paciente = ?";
         try (PreparedStatement statement = conn.prepareStatement(query)){
              statement.setInt(1, Doctor.getIdMedico());
              statement.setString(2, Patient.getIdPaciente());
             try (ResultSet rs = statement.executeQuery()) {
                 while (rs.next()) {
-                    Records.add(extractRecords(rs));
+                    //Records.add(extractRecords(rs));
                 }
             }
             return Records;
         }
     }
     
-    private Records extractRecords(ResultSet rs) throws SQLException {
-        int dbID = rs.getInt("id");
-        Date fecha_emision = rs.getDate("fecha_emision");
-        String alergias = rs.getString("alergias");
-        String descrip_alergias = rs.getString("descrip_alergias");
-        String patologias = rs.getString("patologias");
-        String descrip_patologias = rs.getString("descrip_patologias");
-        String descrip_reporte = rs.getString("descrip_reporte");
-        int id_paciente = rs.getInt("id_paciente");
-        int id_medico = rs.getInt("id_medico");
- 
-        return new Records(dbID,fecha_emision,alergias,descrip_alergias,patologias,descrip_patologias,
-        descrip_reporte,id_paciente,id_medico);
-    }
+    
+
     
 
 }

@@ -22,7 +22,7 @@ public class PatientDAO {
     public PatientDAO() {
         this.conn = new ConnectionHandler().getConn();
     }
-
+    
     // Method to insert a new patient into the database
     public QueryResponses insertPatient(Patient patient) throws SQLException {
         String query = "INSERT INTO paciente (celular_1, celular_2, nombre_completo, cedula, id, direccion, fecha_nacimiento, correo_electronico, id_doctor) " +
