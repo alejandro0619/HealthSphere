@@ -17,7 +17,9 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import validations.EmailChecker;
 import validations.FormValidator;
+import validations.PhoneChecker;
 
 /**
  *
@@ -149,7 +151,7 @@ public class PatientInformation extends javax.swing.JFrame {
         });
 
         txtBirth.setForeground(new java.awt.Color(153, 153, 153));
-        txtBirth.setText("Año-Mes-Dia");
+        txtBirth.setText("YYYY-MM-DD");
         txtBirth.setToolTipText("");
         txtBirth.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -157,6 +159,11 @@ public class PatientInformation extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtBirthFocusLost(evt);
+            }
+        });
+        txtBirth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBirthActionPerformed(evt);
             }
         });
 
@@ -591,7 +598,24 @@ public class PatientInformation extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAddressActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String regex = "^\\d{4}-\\d{2}-\\d{2}$";
+        boolean is_date_valid = txtBirth.getText().matches(regex);
+        
+        if (!is_date_valid) {
+            JOptionPane.showMessageDialog(null, "Fecha inválida", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        if (!new PhoneChecker(txtPhone.getText()).isValid() || !new PhoneChecker(txtPhone2.getText()).isValid()) {
+            JOptionPane.showMessageDialog(null, "Números celulares inválidos", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        if (!new EmailChecker(txtEmail.getText()).isValid()) {
+            JOptionPane.showMessageDialog(null, "Correo Electrónico inválido", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
         TabViews.setSelectedIndex(1);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -611,6 +635,7 @@ public class PatientInformation extends javax.swing.JFrame {
         }
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         
+        
         try {
             Patient new_patient = new Patient(
                     txtPhone.getText(),
@@ -625,7 +650,9 @@ public class PatientInformation extends javax.swing.JFrame {
             );
             
             new PatientDAO().insertPatient(new_patient);
-            
+            this.dispose();
+            JOptionPane.showMessageDialog(null, "Registro Exitoso", "Paciente añadido correctamente", JOptionPane.INFORMATION_MESSAGE);
+            new Dashboard().setVisible(true);
         } catch (ParseException ex) {
             Logger.getLogger(PatientInformation.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -661,7 +688,7 @@ public class PatientInformation extends javax.swing.JFrame {
 
     private void txtBirthFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBirthFocusGained
         // TODO add your handling code here:
-        if(txtBirth.getText().equals("Año-Mes-Dia")){
+        if(txtBirth.getText().equals("YYYY-MM-DD")){
             txtBirth.setText("");
             txtBirth.setForeground(new Color(0,0,0));
         }
@@ -670,14 +697,14 @@ public class PatientInformation extends javax.swing.JFrame {
     private void txtBirthFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBirthFocusLost
        
         if(txtBirth.getText().equals("")){
-            txtBirth.setText("Año-Mes-Dia");
+            txtBirth.setText("YYYY-MM-DD");
             txtBirth.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_txtBirthFocusLost
 
     private void txtPhoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneFocusGained
        
-        if(txtPhone.getText().equals("+58 212 1234567")){
+        if(txtPhone.getText().equals("+58 212-1234567")){
             txtPhone.setText("");
             txtPhone.setForeground(new Color(0,0,0));
         }
@@ -686,7 +713,7 @@ public class PatientInformation extends javax.swing.JFrame {
     private void txtPhoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneFocusLost
     
          if(txtPhone.getText().equals("")){
-            txtPhone.setText("+58 212 1234567");
+            txtPhone.setText("+58 212-1234567");
             txtPhone.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_txtPhoneFocusLost
@@ -741,7 +768,7 @@ public class PatientInformation extends javax.swing.JFrame {
 
     private void txtPhone2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhone2FocusGained
         // TODO add your handling code here:
-        if(txtPhone2.getText().equals("0212 1234567")){
+        if(txtPhone2.getText().equals("0212-1234567")){
             txtPhone2.setText("");
             txtPhone2.setForeground(new Color(0,0,0));
         }
@@ -750,7 +777,7 @@ public class PatientInformation extends javax.swing.JFrame {
     private void txtPhone2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhone2FocusLost
         // TODO add your handling code here:
         if(txtPhone2.getText().equals("")){
-            txtPhone2.setText("0212 1234567");
+            txtPhone2.setText("0212-1234567");
             txtPhone2.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_txtPhone2FocusLost
@@ -834,6 +861,10 @@ public class PatientInformation extends javax.swing.JFrame {
             allergiesInput.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_allergiesInputFocusLost
+
+    private void txtBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBirthActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBirthActionPerformed
 
     /**
      * @param args the command line arguments

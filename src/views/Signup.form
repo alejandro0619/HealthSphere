@@ -91,13 +91,13 @@
                           <Component id="inputID" min="-2" pref="255" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="inputFullName" min="-2" pref="255" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="inputFullName" pref="255" max="32767" attributes="0"/>
                           <Component id="labelName" min="-2" max="-2" attributes="0"/>
                           <Component id="labelSpecialty" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="inputSpecialty" alignment="0" min="-2" pref="255" max="-2" attributes="0"/>
                           <Component id="labelPassword" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="inputPassword" min="-2" pref="255" max="-2" attributes="0"/>
+                          <Component id="inputPassword" pref="255" max="32767" attributes="0"/>
+                          <Component id="jComboBox1" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
                   </Group>
@@ -139,9 +139,9 @@
                           <Component id="labelSpecialty" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="inputSpecialty" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="inputAddress" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -341,20 +341,50 @@
                 <Property name="text" type="java.lang.String" value="Especialidad"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="inputSpecialty">
+            <Component class="javax.swing.JComboBox" name="jComboBox1">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="99" red="99" type="rgb"/>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="35">
+                    <StringItem index="0" value="Anestesiolog&#xed;a"/>
+                    <StringItem index="1" value="Cardiolog&#xed;a"/>
+                    <StringItem index="2" value="Cirug&#xed;a General"/>
+                    <StringItem index="3" value="Cirug&#xed;a Plastica"/>
+                    <StringItem index="4" value="Coloproctolog&#xed;a"/>
+                    <StringItem index="5" value="Dermatolog&#xed;a"/>
+                    <StringItem index="6" value="Endocrinolog&#xed;a"/>
+                    <StringItem index="7" value="Fisiatr&#xed;a"/>
+                    <StringItem index="8" value="Foniatr&#xed;a"/>
+                    <StringItem index="9" value="Gastroenterolog&#xed;a"/>
+                    <StringItem index="10" value="Ginecolog&#xed;a"/>
+                    <StringItem index="11" value="Gineco Obstetricia"/>
+                    <StringItem index="12" value="Hematolog&#xed;a"/>
+                    <StringItem index="13" value="Infectolog&#xed;a"/>
+                    <StringItem index="14" value="Mastolog&#xed;a"/>
+                    <StringItem index="15" value="Medicina Cr&#xed;tica"/>
+                    <StringItem index="16" value="Medicina Interna"/>
+                    <StringItem index="17" value="Medicina General"/>
+                    <StringItem index="18" value="Nefrolog&#xed;a"/>
+                    <StringItem index="19" value="Neumonolog&#xed;a"/>
+                    <StringItem index="20" value="Neurocirug&#xed;a"/>
+                    <StringItem index="21" value="Neurolog&#xed;a"/>
+                    <StringItem index="22" value="Neurolog&#xed;a Infantil"/>
+                    <StringItem index="23" value="Nutrici&#xf3;n"/>
+                    <StringItem index="24" value="Oftalmolog&#xed;a"/>
+                    <StringItem index="25" value="Oncolog&#xed;a"/>
+                    <StringItem index="26" value="Otorrinolaringolog&#xed;a"/>
+                    <StringItem index="27" value="Psicolog&#xed;a"/>
+                    <StringItem index="28" value="Psiquiatr&#xed;a"/>
+                    <StringItem index="29" value="Pediatr&#xed;a"/>
+                    <StringItem index="30" value="Reumatolog&#xed;a"/>
+                    <StringItem index="31" value="Sexolog&#xed;a"/>
+                    <StringItem index="32" value="Traumatolog&#xed;a"/>
+                    <StringItem index="33" value="Urolog&#xed;a"/>
+                    <StringItem index="34" value="Urolog&#xed;a Oncol&#xf3;gica"/>
+                  </StringArray>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Ingrese su Especialidad"/>
               </Properties>
-              <Events>
-                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="inputSpecialtyFocusGained"/>
-                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="inputSpecialtyFocusLost"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inputSpecialtyActionPerformed"/>
-              </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundedTextField()"/>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
           </SubComponents>
