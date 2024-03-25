@@ -42,7 +42,6 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(881, 600));
         setResizable(false);
 
         Main.setBackground(new java.awt.Color(217, 217, 217, 200));
@@ -149,7 +148,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(BgPanelLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(Main, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         BgPanelLayout.setVerticalGroup(
             BgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,15 +176,13 @@ public class Dashboard extends javax.swing.JFrame {
     private void recordsClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recordsClicked
         // TODO add your handling code here:
         this.dispose();
-        
+        new Records().setVisible(true);
     }//GEN-LAST:event_recordsClicked
 
     private void NewPatient(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NewPatient
         // TODO add your handling code here:
-        this.dispose();
-        new PatientInformation().setVisible(true);
-        System.out.print(SessionManager.getInstance().getCurrentUser().getNombreCompleto());
-        System.out.print(SessionManager.getInstance().getCurrentUser().getId());
+        //this.dispose();
+        //new PatientInformation().setVisible(true);
     }//GEN-LAST:event_NewPatient
 
     private void profileClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileClicked
