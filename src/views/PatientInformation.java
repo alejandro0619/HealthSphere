@@ -23,6 +23,7 @@ import validations.FormValidator;
 import validations.IDChecker;
 import validations.PhoneChecker;
 import java.sql.*;
+import javax.swing.JFileChooser;
 /**
  *
  * @author Nyderlin Rivas
@@ -74,6 +75,7 @@ public class PatientInformation extends javax.swing.JFrame {
         labelGender = new javax.swing.JLabel();
         labelInsurance = new javax.swing.JLabel();
         insurance = new javax.swing.JComboBox<>();
+        uploadFiles = new javax.swing.JButton();
         panelMedicalInfo = new javax.swing.JPanel();
         labelBloodType = new javax.swing.JLabel();
         LabelTittle = new javax.swing.JLabel();
@@ -323,6 +325,14 @@ public class PatientInformation extends javax.swing.JFrame {
             }
         });
         panelPatientInfo.add(insurance, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 520, 200, 30));
+
+        uploadFiles.setText("jButton2");
+        uploadFiles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadFilesActionPerformed(evt);
+            }
+        });
+        panelPatientInfo.add(uploadFiles, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 530, -1, -1));
 
         tabsViews.addTab("Información Personal", panelPatientInfo);
 
@@ -784,6 +794,17 @@ public class PatientInformation extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_insuranceActionPerformed
 
+    private void uploadFilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadFilesActionPerformed
+        // TODO add your handling code here:
+        
+        JFileChooser fileChooser = new JFileChooser();
+        int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            String selectedFilePath = fileChooser.getSelectedFile().getAbsolutePath();
+            System.out.println("Selected file: " + selectedFilePath);
+        }
+    }//GEN-LAST:event_uploadFilesActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelAllergies;
     private javax.swing.JLabel LabelPathologies;
@@ -838,5 +859,6 @@ public class PatientInformation extends javax.swing.JFrame {
     private javax.swing.JTextArea txtPathologies;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtPhone2;
+    private javax.swing.JButton uploadFiles;
     // End of variables declaration//GEN-END:variables
 }
