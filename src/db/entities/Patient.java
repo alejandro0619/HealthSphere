@@ -24,9 +24,10 @@ public class Patient {
     private Date birthdate;
     private String email;
     private Doctor doc;
+    private String lugarNacimiento;
+    private String genero;
     // Constructor
-    public Patient(String phoneNumber1, String phoneNumber2, String fullName, String ID,
-                   Integer dbID, String address, Date birthdate, String email, Doctor doc) {
+    public Patient(String phoneNumber1, String phoneNumber2, String fullName, String ID, Integer dbID, String address, Date birthdate, String email, Doctor doc, String par2, String par3, String par4) {
         this.phoneNumber1 = phoneNumber1;
         this.phoneNumber2 = phoneNumber2;
         this.fullName = fullName;
@@ -36,6 +37,9 @@ public class Patient {
         this.birthdate = birthdate;
         this.email = email;
         this.doc = doc;
+        this.lugarNacimiento = lugarNacimiento;
+        this.genero = genero;
+        
     }
     
     
@@ -107,6 +111,22 @@ public class Patient {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    public String getLugarNacimiento() {
+        return lugarNacimiento;
+    }
+
+    public void setLugarNacimiento(String lugarNacimiento) {
+        this.lugarNacimiento = lugarNacimiento;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 }
 

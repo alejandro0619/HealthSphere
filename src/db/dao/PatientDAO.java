@@ -25,8 +25,8 @@ public class PatientDAO {
     
     // Method to insert a new patient into the database
     public QueryResponses insertPatient(Patient patient) throws SQLException {
-        String query = "INSERT INTO paciente (celular_1, celular_2, nombre_completo, cedula, id, direccion, fecha_nacimiento, correo_electronico, id_doctor) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO paciente (celular_1, celular_2, nombre_completo, cedula, id, direccion, fecha_nacimiento, correo_electronico, id_doctor, lugar_nacimiento, genero) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,? ,?)";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, patient.getPhoneNumber1());
             statement.setString(2, patient.getPhoneNumber2());
@@ -37,6 +37,10 @@ public class PatientDAO {
             statement.setDate(7, new java.sql.Date(patient.getBirthdate().getTime()));
             statement.setString(8, patient.getEmail());
             statement.setInt(9, patient.getDoctor().getId()); // wtf
+            statement.setString(10, patient.getLugarNacimiento());
+            statement.setString(11, patient.getGenero());
+            
+            
             int insertedRows = statement.executeUpdate();
             this.conn.close();
             
@@ -55,7 +59,7 @@ public class PatientDAO {
             statement.setString(1, ID);
             try (ResultSet rs = statement.executeQuery()) {
                 if (rs.next()) {
-                    return extractPatientFromResultSet(rs);
+                   // return extractPatientFromResultSet(rs);
                 }
             }
         }
@@ -69,14 +73,14 @@ public class PatientDAO {
         try (Statement statement = conn.createStatement();
              ResultSet rs = statement.executeQuery(query)) {
             while (rs.next()) {
-                patients.add(extractPatientFromResultSet(rs));
+                //patients.add(extractPatientFromResultSet(rs));
             }
         }
         return patients;
     }
 
     // Helper method to extract patient information from the ResultSet
-    private Patient extractPatientFromResultSet(ResultSet rs) throws SQLException {
+    /*private Patient extractPatientFromResultSet(ResultSet rs) throws SQLException {
         String phoneNumber1 = rs.getString("celular_1");
         String phoneNumber2 = rs.getString("celular_2");
         String fullName = rs.getString("nombre_completo");
@@ -86,6 +90,6 @@ public class PatientDAO {
         java.util.Date birthdate = rs.getDate("fecha_nacimiento");
         String email = rs.getString("correo_electronico");
         int doc = rs.getInt("id_doctor");
-        return new Patient(phoneNumber1, phoneNumber2, fullName, ID, dbID, address, birthdate, email, new DoctorDAO().getDoctorById(doc));
-    }
+        return new Patient(phoneNumber1, phoneNumber2, fullName, ID, dbID, address, birthdate, email, new DoctorDAO().getDoctorById(doc), (String) combBirthPlace.getSelectedItem(), (String) genreInput.getSelectedItem(), (String) insurance.getSelectedItem());
+    }*/
 }

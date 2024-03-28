@@ -43,13 +43,15 @@ public class Records extends javax.swing.JFrame {
         detailsButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(881, 600));
+        setPreferredSize(new java.awt.Dimension(1023, 664));
         setResizable(false);
 
         Form3.setBackground(new java.awt.Color(217, 217, 217,120));
+        Form3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Hack", 0, 24)); // NOI18N
         jLabel1.setText("Registros");
+        Form3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, -1, -1));
 
         RecordsTable.setBackground(new java.awt.Color(217, 217, 217));
         RecordsTable.setFont(new java.awt.Font("Hack", 0, 18)); // NOI18N
@@ -66,6 +68,8 @@ public class Records extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(RecordsTable);
 
+        Form3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 730, 380));
+
         backButton.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
         backButton.setText("Volver");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -73,6 +77,7 @@ public class Records extends javax.swing.JFrame {
                 backButtonActionPerformed(evt);
             }
         });
+        Form3.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 480, 100, 30));
 
         SearchTxt.setFont(new java.awt.Font("Hack", 1, 18)); // NOI18N
         SearchTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -80,6 +85,7 @@ public class Records extends javax.swing.JFrame {
                 SearchTxtActionPerformed(evt);
             }
         });
+        Form3.add(SearchTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 480, 260, 36));
 
         detailsButton1.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
         detailsButton1.setText("Detalles");
@@ -88,54 +94,7 @@ public class Records extends javax.swing.JFrame {
                 detailsButton1ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout Form3Layout = new javax.swing.GroupLayout(Form3);
-        Form3.setLayout(Form3Layout);
-        Form3Layout.setHorizontalGroup(
-            Form3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Form3Layout.createSequentialGroup()
-                .addGroup(Form3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Form3Layout.createSequentialGroup()
-                        .addGap(340, 340, 340)
-                        .addComponent(jLabel1))
-                    .addGroup(Form3Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(Form3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(Form3Layout.createSequentialGroup()
-                                .addComponent(backButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(SearchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(230, 230, 230))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(56, Short.MAX_VALUE))
-            .addGroup(Form3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Form3Layout.createSequentialGroup()
-                    .addContainerGap(678, Short.MAX_VALUE)
-                    .addComponent(detailsButton1)
-                    .addGap(45, 45, 45)))
-        );
-        Form3Layout.setVerticalGroup(
-            Form3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Form3Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(Form3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Form3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(SearchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(36, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Form3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))))
-            .addGroup(Form3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Form3Layout.createSequentialGroup()
-                    .addContainerGap(449, Short.MAX_VALUE)
-                    .addComponent(detailsButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(24, 24, 24)))
-        );
+        Form3.add(detailsButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 480, -1, 30));
 
         BgPanel.setPreferredSize(new java.awt.Dimension(881, 519));
 
@@ -144,25 +103,23 @@ public class Records extends javax.swing.JFrame {
         BgPanelLayout.setHorizontalGroup(
             BgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BgPanelLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(Form3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGap(81, 81, 81)
+                .addComponent(Form3, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(141, Short.MAX_VALUE))
         );
         BgPanelLayout.setVerticalGroup(
             BgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BgPanelLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(Form3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
+                .addComponent(Form3, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(195, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(BgPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(BgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

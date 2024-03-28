@@ -5,11 +5,10 @@
 package views;
 
 import customComps.BackgroundPanel;
-import customComps.RoundedButton;
-import customComps.RoundedPanel;
 import customComps.RoundedTextField;
 import db.dao.PatientDAO;
 import db.dao.RecordsDAO;
+import db.entities.Patient;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -20,10 +19,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import validations.EmailChecker;
 import validations.FormValidator;
+import validations.IDChecker;
 import validations.PhoneChecker;
-import db.entities.Patient;
-import db.entities.Record;
-
 
 /**
  *
@@ -32,7 +29,7 @@ import db.entities.Record;
 public class PatientInformation extends javax.swing.JFrame {
 
     /**
-     * Creates new form PatientInformation
+     * Creates new form PatientInformation2
      */
     public PatientInformation() {
         initComponents();
@@ -47,66 +44,99 @@ public class PatientInformation extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        BgPanel2 = new BackgroundPanel("/resources/Artboard 1.png");
-        TabViews = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel1 = new BackgroundPanel("/resources/Artboard 1.png");
+        tabsViews = new javax.swing.JTabbedPane();
+        panelPatientInfo = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         labelTittle = new javax.swing.JLabel();
-        labelInfo = new javax.swing.JLabel();
+        labelSubtittle = new javax.swing.JLabel();
         labelId = new javax.swing.JLabel();
-        txtId = new RoundedTextField();
+        txtId = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         labelName = new javax.swing.JLabel();
         labelLastName = new javax.swing.JLabel();
-        txtName = new RoundedTextField();
-        txtLastName = new RoundedTextField();
-        txtBirth = new RoundedTextField();
+        txtLastName = new javax.swing.JTextField();
         labelBirth = new javax.swing.JLabel();
         labelBirthPlace = new javax.swing.JLabel();
         labelAddress = new javax.swing.JLabel();
-        txtAddress = new RoundedTextField();
+        txtBirth = new javax.swing.JTextField();
+        combBirthPlace = new javax.swing.JComboBox<>();
+        txtAddress = new javax.swing.JTextField();
         labelPhone = new javax.swing.JLabel();
+        txtPhone = new javax.swing.JTextField();
+        txtPhone2 = new javax.swing.JTextField();
         LabelSecondPhone = new javax.swing.JLabel();
         labelEmail = new javax.swing.JLabel();
-        txtPhone = new RoundedTextField();
-        txtPhone2 = new RoundedTextField();
-        txtEmail = new RoundedTextField();
-        jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        bloodTypeInput = new RoundedTextField();
-        jLabel6 = new javax.swing.JLabel();
-        statusInput = new RoundedTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        savePatientButton = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
         genreInput = new javax.swing.JComboBox<>();
-        back = new javax.swing.JButton();
+        labelGender = new javax.swing.JLabel();
+        labelInsurance = new javax.swing.JLabel();
         insurance = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jPanel3 = new javax.swing.JPanel();
+        panelMedicalInfo = new javax.swing.JPanel();
+        labelBloodType = new javax.swing.JLabel();
+        LabelTittle = new javax.swing.JLabel();
+        labelState = new javax.swing.JLabel();
+        statusInput = new javax.swing.JTextField();
+        combPathologies = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtPathologies = new javax.swing.JTextArea();
+        LabelPathologies = new javax.swing.JLabel();
+        LabelAllergies = new javax.swing.JLabel();
+        combAllergies = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtAllergies = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtAditionalInfo = new javax.swing.JTextArea();
+        combBloodType = new javax.swing.JComboBox<>();
+        labelAditionalInfo = new javax.swing.JLabel();
+        LabelSubtittle = new javax.swing.JLabel();
+        labelPathologies = new javax.swing.JLabel();
+        labelAllergies = new javax.swing.JLabel();
+        bttnSave = new javax.swing.JButton();
+        bttnBack = new javax.swing.JButton();
+        panelPatientFile = new javax.swing.JPanel();
         jFileChooser2 = new javax.swing.JFileChooser();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
-        jPanel1.setBackground(new java.awt.Color(217, 217, 217,120));
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        tabsViews.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        panelPatientInfo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelPatientInfo.setBackground(new java.awt.Color(217, 217, 217,120));
+
+        jButton1.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        jButton1.setText("Siguiente");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        panelPatientInfo.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 520, 119, 37));
 
         labelTittle.setFont(new java.awt.Font("Hack", 0, 36)); // NOI18N
         labelTittle.setText("Datos del Paciente");
+        panelPatientInfo.add(labelTittle, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
 
-        labelInfo.setFont(new java.awt.Font("Hack", 1, 18)); // NOI18N
-        labelInfo.setText("Información Personal");
+        labelSubtittle.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
+        labelSubtittle.setText("Información Personal");
+        panelPatientInfo.add(labelSubtittle, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 187, -1));
 
         labelId.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
         labelId.setText("Cédula o Pasaporte");
+        panelPatientInfo.add(labelId, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, -1, -1));
 
         txtId.setForeground(new java.awt.Color(153, 153, 153));
         txtId.setText("V00000000");
@@ -118,12 +148,12 @@ public class PatientInformation extends javax.swing.JFrame {
                 txtIdFocusLost(evt);
             }
         });
-
-        labelName.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
-        labelName.setText("Nombres");
-
-        labelLastName.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
-        labelLastName.setText("Apellidos");
+        txtId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdActionPerformed(evt);
+            }
+        });
+        panelPatientInfo.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 200, 31));
 
         txtName.setForeground(new java.awt.Color(153, 153, 153));
         txtName.setText("Ingrese Nombres");
@@ -135,6 +165,15 @@ public class PatientInformation extends javax.swing.JFrame {
                 txtNameFocusLost(evt);
             }
         });
+        panelPatientInfo.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 200, 31));
+
+        labelName.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        labelName.setText("Nombres");
+        panelPatientInfo.add(labelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, 98, 20));
+
+        labelLastName.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        labelLastName.setText("Apellidos");
+        panelPatientInfo.add(labelLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 170, 116, -1));
 
         txtLastName.setForeground(new java.awt.Color(153, 153, 153));
         txtLastName.setText("Ingrese Apellidos");
@@ -152,6 +191,19 @@ public class PatientInformation extends javax.swing.JFrame {
                 txtLastNameActionPerformed(evt);
             }
         });
+        panelPatientInfo.add(txtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 210, 190, 31));
+
+        labelBirth.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        labelBirth.setText("Fecha de Nacimiento");
+        panelPatientInfo.add(labelBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 174, -1));
+
+        labelBirthPlace.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        labelBirthPlace.setText("Lugar de Nacimiento");
+        panelPatientInfo.add(labelBirthPlace, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 280, 200, -1));
+
+        labelAddress.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        labelAddress.setText("Dirección");
+        panelPatientInfo.add(labelAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, 89, 20));
 
         txtBirth.setForeground(new java.awt.Color(153, 153, 153));
         txtBirth.setText("YYYY-MM-DD");
@@ -169,15 +221,11 @@ public class PatientInformation extends javax.swing.JFrame {
                 txtBirthActionPerformed(evt);
             }
         });
+        panelPatientInfo.add(txtBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 310, 200, 31));
 
-        labelBirth.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
-        labelBirth.setText("Fecha de Nacimiento");
-
-        labelBirthPlace.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
-        labelBirthPlace.setText("Lugar de Nacimiento");
-
-        labelAddress.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
-        labelAddress.setText("Dirección");
+        combBirthPlace.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Amazonas", "Anzoátegui", "Apure", "Aragua", "Barinas", "Bolívar", "Carabobo", "Cojedes", "Delta Amacuro", "Distrito Capital", "Falcón", "Guárico", "Lara", "Mérida", "Miranda", "Monagas", "Nueva Esparta", "Portuguesa", "Sucre", "Táchira", "Trujillo", "Vargas", "Yaracuy", "Zulia" }));
+        combBirthPlace.setToolTipText("");
+        panelPatientInfo.add(combBirthPlace, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 310, 200, 31));
 
         txtAddress.setForeground(new java.awt.Color(153, 153, 153));
         txtAddress.setText("Ingrese Direccion");
@@ -194,15 +242,11 @@ public class PatientInformation extends javax.swing.JFrame {
                 txtAddressActionPerformed(evt);
             }
         });
+        panelPatientInfo.add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 420, 190, 32));
 
         labelPhone.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
         labelPhone.setText("Teléfono de Contacto");
-
-        LabelSecondPhone.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
-        LabelSecondPhone.setText("Teléfono Secundario");
-
-        labelEmail.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
-        labelEmail.setText("Correo Electrónico");
+        panelPatientInfo.add(labelPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 380, 213, -1));
 
         txtPhone.setForeground(new java.awt.Color(153, 153, 153));
         txtPhone.setText("+58212-1234567");
@@ -215,6 +259,12 @@ public class PatientInformation extends javax.swing.JFrame {
                 txtPhoneFocusLost(evt);
             }
         });
+        txtPhone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPhoneActionPerformed(evt);
+            }
+        });
+        panelPatientInfo.add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 420, 200, 31));
 
         txtPhone2.setForeground(new java.awt.Color(153, 153, 153));
         txtPhone2.setText("0212-1234567");
@@ -231,6 +281,15 @@ public class PatientInformation extends javax.swing.JFrame {
                 txtPhone2ActionPerformed(evt);
             }
         });
+        panelPatientInfo.add(txtPhone2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 420, 200, 31));
+
+        LabelSecondPhone.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        LabelSecondPhone.setText("Teléfono Secundario");
+        panelPatientInfo.add(LabelSecondPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 380, 200, -1));
+
+        labelEmail.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        labelEmail.setText("Correo Electrónico");
+        panelPatientInfo.add(labelEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 480, 200, -1));
 
         txtEmail.setForeground(new java.awt.Color(153, 153, 153));
         txtEmail.setText("ejemplo@gmail.com");
@@ -243,144 +302,38 @@ public class PatientInformation extends javax.swing.JFrame {
                 txtEmailFocusLost(evt);
             }
         });
+        panelPatientInfo.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 520, 190, 31));
 
-        jButton1.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
-        jButton1.setText("Siguiente");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        genreInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Femenino", "Masculino" }));
+        panelPatientInfo.add(genreInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 200, 30));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Amazonas", "Anzoátegui", "Apure", "Aragua", "Barinas", "Bolívar", "Carabobo", "Cojedes", "Delta Amacuro", "Distrito Capital", "Falcón", "Guárico", "Lara", "Mérida", "Miranda", "Monagas", "Nueva Esparta", "Portuguesa", "Sucre", "Táchira", "Trujillo", "Vargas", "Yaracuy", "Zulia" }));
-        jComboBox1.setToolTipText("");
+        labelGender.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        labelGender.setText("Género");
+        panelPatientInfo.add(labelGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 200, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(232, 232, 232)
-                        .addComponent(labelTittle))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(308, 308, 308)
-                        .addComponent(labelInfo))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                            .addComponent(txtId)
-                            .addComponent(txtBirth)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelId)
-                                    .addComponent(labelBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtPhone))
-                        .addGap(53, 53, 53)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelBirthPlace, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                            .addComponent(LabelSecondPhone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtPhone2)
-                            .addComponent(txtName)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(48, 48, 48)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtLastName)
-                            .addComponent(labelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAddress)
-                            .addComponent(labelEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                            .addComponent(txtEmail))))
-                .addGap(117, 117, 117))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(labelTittle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelInfo)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelId)
-                    .addComponent(labelName)
-                    .addComponent(labelLastName))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelBirth)
-                    .addComponent(labelBirthPlace)
-                    .addComponent(labelAddress))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtBirth)
-                    .addComponent(txtAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                    .addComponent(jComboBox1))
-                .addGap(37, 37, 37)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelPhone)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(LabelSecondPhone)
-                        .addComponent(labelEmail)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtPhone)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtPhone2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
-        );
+        labelInsurance.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        labelInsurance.setText("Posee Seguro Médico");
+        panelPatientInfo.add(labelInsurance, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 480, -1, -1));
 
-        TabViews.addTab("Información Personal ", jPanel1);
+        insurance.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sí poseo seguro.", "No poseo seguro." }));
+        panelPatientInfo.add(insurance, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 520, 200, 30));
 
-        jPanel2.setBackground(new java.awt.Color(217, 217, 217,120));
+        tabsViews.addTab("Información Personal", panelPatientInfo);
 
-        jLabel1.setFont(new java.awt.Font("Hack", 0, 36)); // NOI18N
-        jLabel1.setText("Datos Médicos");
+        panelMedicalInfo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelMedicalInfo.setBackground(new java.awt.Color(217, 217, 217,120));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        labelBloodType.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        labelBloodType.setText("Grupo Sanguineo");
+        panelMedicalInfo.add(labelBloodType, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 130, 157, -1));
 
-        jLabel2.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
-        jLabel2.setText("Posee Seguro Médico");
+        LabelTittle.setFont(new java.awt.Font("Hack", 0, 36)); // NOI18N
+        LabelTittle.setText("Datos Médicos");
+        panelMedicalInfo.add(LabelTittle, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
-        jLabel3.setText("Grupo Sanguineo");
-
-        jLabel4.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
-        jLabel4.setText("Patólogias");
-
-        jLabel5.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
-        jLabel5.setText("Alergias");
-
-        bloodTypeInput.setForeground(new java.awt.Color(153, 153, 153));
-        bloodTypeInput.setText("Ingrese Grupo Sanguineo");
-        bloodTypeInput.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                bloodTypeInputFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                bloodTypeInputFocusLost(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
-        jLabel6.setText("Estado");
+        labelState.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        labelState.setText("Estado");
+        panelMedicalInfo.add(labelState, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, -1, -1));
 
         statusInput.setForeground(new java.awt.Color(153, 153, 153));
         statusInput.setText("Estado del Paciente");
@@ -392,257 +345,174 @@ public class PatientInformation extends javax.swing.JFrame {
                 statusInputFocusLost(evt);
             }
         });
+        panelMedicalInfo.add(statusInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 190, 30));
 
-        jLabel7.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
-        jLabel7.setText("Género");
-
-        jLabel8.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
-        jLabel8.setText("Notas Adicionales");
-
-        savePatientButton.setFont(new java.awt.Font("Hack", 1, 18)); // NOI18N
-        savePatientButton.setText("Guardar");
-        savePatientButton.addActionListener(new java.awt.event.ActionListener() {
+        combPathologies.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sí poseo", "No poseo" }));
+        combPathologies.setToolTipText("Alergias");
+        combPathologies.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                savePatientButtonActionPerformed(evt);
+                combPathologiesActionPerformed(evt);
             }
         });
+        panelMedicalInfo.add(combPathologies, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 190, 30));
 
-        jLabel9.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
-        jLabel9.setText("Información Médica");
+        txtPathologies.setColumns(20);
+        txtPathologies.setRows(5);
+        jScrollPane1.setViewportView(txtPathologies);
 
-        genreInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Femenino", "Masculino" }));
+        panelMedicalInfo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 240, 260, 60));
 
-        back.setFont(new java.awt.Font("Hack", 1, 14)); // NOI18N
-        back.setText("Volver");
-        back.addActionListener(new java.awt.event.ActionListener() {
+        LabelPathologies.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        LabelPathologies.setText("Patólogias");
+        panelMedicalInfo.add(LabelPathologies, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, -1, -1));
+
+        LabelAllergies.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        LabelAllergies.setText("Descripción de Alergias");
+        panelMedicalInfo.add(LabelAllergies, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, 240, 20));
+
+        combAllergies.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sí poseo", "No poseo" }));
+        combAllergies.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backActionPerformed(evt);
+                combAllergiesActionPerformed(evt);
             }
         });
+        panelMedicalInfo.add(combAllergies, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, 190, 30));
 
-        insurance.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sí poseo seguro.", "No poseo seguro." }));
+        txtAllergies.setColumns(20);
+        txtAllergies.setRows(5);
+        jScrollPane2.setViewportView(txtAllergies);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sí poseo", "No poseo" }));
+        panelMedicalInfo.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 340, 260, 60));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sí poseo", "No poseo" }));
+        txtAditionalInfo.setColumns(20);
+        txtAditionalInfo.setRows(5);
+        jScrollPane3.setViewportView(txtAditionalInfo);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(297, 297, 297)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(savePatientButton))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(bloodTypeInput, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(statusInput))
-                                        .addGap(74, 74, 74)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(genreInput, 0, 220, Short.MAX_VALUE)
-                                            .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(60, 60, 60)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                                            .addComponent(insurance, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                                .addGap(0, 64, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1)
-                                .addGap(194, 194, 194)))))
-                .addGap(17, 17, 17))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(328, 328, 328))
+        panelMedicalInfo.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 470, 390, 110));
+
+        combBloodType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " A positivo (A+)", " A negativo (A-)", " B positivo (B+)", " B negativo (B-)", " AB positivo (AB+)", " AB negativo (AB-)", " O positivo (O+)", " O negativo (O-)" }));
+        panelMedicalInfo.add(combBloodType, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 170, 210, 30));
+
+        labelAditionalInfo.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        labelAditionalInfo.setText("Información Adicional");
+        panelMedicalInfo.add(labelAditionalInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 440, 190, 20));
+
+        LabelSubtittle.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        LabelSubtittle.setText("Información Médica");
+        panelMedicalInfo.add(LabelSubtittle, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, 160, 20));
+
+        labelPathologies.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        labelPathologies.setText("Descripción de Patólogias");
+        panelMedicalInfo.add(labelPathologies, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 210, -1, -1));
+
+        labelAllergies.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        labelAllergies.setText("Alergias");
+        panelMedicalInfo.add(labelAllergies, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 70, 20));
+
+        bttnSave.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        bttnSave.setText("Guardar");
+        bttnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnSaveActionPerformed(evt);
+            }
+        });
+        panelMedicalInfo.add(bttnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 550, 119, 37));
+
+        bttnBack.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
+        bttnBack.setText("Volver");
+        bttnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnBackActionPerformed(evt);
+            }
+        });
+        panelMedicalInfo.add(bttnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 550, 119, 37));
+
+        tabsViews.addTab("Información Médica", panelMedicalInfo);
+
+        panelPatientFile.setBackground(new java.awt.Color(217, 217, 217,120));
+
+        javax.swing.GroupLayout panelPatientFileLayout = new javax.swing.GroupLayout(panelPatientFile);
+        panelPatientFile.setLayout(panelPatientFileLayout);
+        panelPatientFileLayout.setHorizontalGroup(
+            panelPatientFileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jFileChooser2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1021, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(bloodTypeInput, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(insurance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(genreInput, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(statusInput, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(21, 21, 21)
-                .addComponent(jLabel8)
-                .addGap(11, 11, 11)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(savePatientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(48, Short.MAX_VALUE))
+        panelPatientFileLayout.setVerticalGroup(
+            panelPatientFileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jFileChooser2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
         );
 
-        TabViews.addTab("Información Médica", jPanel2);
+        tabsViews.addTab("Archivos del Paciente", panelPatientFile);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 858, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tabsViews)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tabsViews)
         );
 
-        TabViews.addTab("Subir archivos del paciente", jPanel3);
-
-        BgPanel2.setPreferredSize(new java.awt.Dimension(881,519));
-
-        javax.swing.GroupLayout BgPanel2Layout = new javax.swing.GroupLayout(BgPanel2);
-        BgPanel2.setLayout(BgPanel2Layout);
-        BgPanel2Layout.setHorizontalGroup(
-            BgPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BgPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(TabViews)
-                .addContainerGap())
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        BgPanel2Layout.setVerticalGroup(
-            BgPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TabViews)
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        getContentPane().add(BgPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtLastNameActionPerformed
-
-    private void txtAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddressActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAddressActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
         String regex = "^\\d{4}-\\d{2}-\\d{2}$";
         boolean is_date_valid = txtBirth.getText().matches(regex);
         
+        if (!new IDChecker(txtId.getText()).isValid() || (txtId.getText()).equals("V00000000") ) {
+            JOptionPane.showMessageDialog(null, "Cédula Invalida", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         if (!is_date_valid) {
             JOptionPane.showMessageDialog(null, "Fecha inválida", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
             return;
         }
         
-        if (!new PhoneChecker(txtPhone.getText()).isValid() || !new PhoneChecker(txtPhone2.getText()).isValid()) {
+        if (!new PhoneChecker(txtPhone.getText()).isValid() || !new PhoneChecker(txtPhone2.getText()).isValid() || (txtPhone2.getText()).equals("0212-1234567") || (txtPhone.getText()).equals("+58212-1234567") ) {
             JOptionPane.showMessageDialog(null, "Números celulares inválidos", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
             return;
         }
         
-        if (!new EmailChecker(txtEmail.getText()).isValid()) {
+        if (!new EmailChecker(txtEmail.getText()).isValid() || (txtEmail.getText()).equals("ejemplo@gmail.com")) {
             JOptionPane.showMessageDialog(null, "Correo Electrónico inválido", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
-        TabViews.setSelectedIndex(1);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void savePatientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePatientButtonActionPerformed
-        // TODO add your handling code here:
         if (FormValidator.isFormValid(rootPane) == false) {
             JOptionPane.showMessageDialog(null, "No se permiten campos vacíos ", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        
-        
-        try {
-            Patient new_patient = new Patient(
-                    txtPhone.getText(),
-                    txtPhone2.getText(),
-                    txtName.getText() + ' ' + txtLastName.getText(),
-                    txtId.getText(),
-                    null,
-                    txtAddress.getText(),
-                    dateFormat.parse(txtBirth.getText()),
-                    txtEmail.getText(),
-                    SessionManager.getInstance().getCurrentUser()
-            );
-            
-            new PatientDAO().insertPatient(new_patient);
-            int patientId = new RecordsDAO().getLastInsertId();
-            System.out.print(patientId);
-            Record new_record = new Record(
-                    null, // id
-                    new java.sql.Date(new Date().getTime()),// fecha actual
-                    (String) jComboBox2.getSelectedItem(),// alergias
-                    statusInput.getText(),// descrip alergias
-                    (String) jComboBox3.getSelectedItem(),// patologias
-                    (String) genreInput.getSelectedItem(),// genero
-                    jTextArea1.getText(), //descripción del reporte
-                    patientId,
-                    SessionManager.getInstance().getCurrentUser()
-            );
-            
-           
-            new RecordsDAO().insertRecord(new_record);
-            
-            this.dispose();
-            JOptionPane.showMessageDialog(null, "Registro Exitoso", "Paciente añadido correctamente", JOptionPane.INFORMATION_MESSAGE);
-            new Dashboard().setVisible(true);
-        } catch (ParseException ex) {
-            Logger.getLogger(PatientInformation.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(PatientInformation.class.getName()).log(Level.SEVERE, null, ex);
+        if (txtName.getText().equals("Ingrese Nombres")){
+            JOptionPane.showMessageDialog(null, "No se permiten campos vacíos ", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if (txtLastName.getText().equals("Ingrese Apellidos")){
+            JOptionPane.showMessageDialog(null, "No se permiten campos vacíos ", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if (txtAddress.getText().equals("Ingrese Direccion")){
+            JOptionPane.showMessageDialog(null, "No se permiten campos vacíos ", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
+            return;
         }
         
-       
-    }//GEN-LAST:event_savePatientButtonActionPerformed
-
-    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        // TODO add your handling code here:
-        TabViews.setSelectedIndex(0);
-    }//GEN-LAST:event_backActionPerformed
+        
+        tabsViews.setSelectedIndex(1);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtIdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdFocusGained
 
@@ -653,44 +523,16 @@ public class PatientInformation extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdFocusGained
 
     private void txtIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdFocusLost
-    
-         if(txtId.getText().equals("")){
+
+        if(txtId.getText().equals("")){
             txtId.setText("V00000000");
             txtId.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_txtIdFocusLost
 
-    private void txtBirthFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBirthFocusGained
+    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
         // TODO add your handling code here:
-        if(txtBirth.getText().equals("YYYY-MM-DD")){
-            txtBirth.setText("");
-            txtBirth.setForeground(new Color(0,0,0));
-        }
-    }//GEN-LAST:event_txtBirthFocusGained
-
-    private void txtBirthFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBirthFocusLost
-       
-        if(txtBirth.getText().equals("")){
-            txtBirth.setText("YYYY-MM-DD");
-            txtBirth.setForeground(new Color(153,153,153));
-        }
-    }//GEN-LAST:event_txtBirthFocusLost
-
-    private void txtPhoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneFocusGained
-       
-        if(txtPhone.getText().equals("+58212-1234567")){
-            txtPhone.setText("");
-            txtPhone.setForeground(new Color(0,0,0));
-        }
-    }//GEN-LAST:event_txtPhoneFocusGained
-
-    private void txtPhoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneFocusLost
-    
-         if(txtPhone.getText().equals("")){
-            txtPhone.setText("+58212-1234567");
-            txtPhone.setForeground(new Color(153,153,153));
-        }
-    }//GEN-LAST:event_txtPhoneFocusLost
+    }//GEN-LAST:event_txtIdActionPerformed
 
     private void txtNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNameFocusGained
         // TODO add your handling code here:
@@ -712,17 +554,41 @@ public class PatientInformation extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(txtLastName.getText().equals("Ingrese Apellidos")){
             txtLastName.setText("");
-           txtLastName.setForeground(new Color(0,0,0));
+            txtLastName.setForeground(new Color(0,0,0));
         }
     }//GEN-LAST:event_txtLastNameFocusGained
 
     private void txtLastNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLastNameFocusLost
         // TODO add your handling code here:
-         if(txtLastName.getText().equals("")){
+        if(txtLastName.getText().equals("")){
             txtLastName.setText("Ingrese Apellidos");
-           txtLastName.setForeground(new Color(153,153,153));
+            txtLastName.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_txtLastNameFocusLost
+
+    private void txtLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLastNameActionPerformed
+
+    private void txtBirthFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBirthFocusGained
+        // TODO add your handling code here:
+        if(txtBirth.getText().equals("YYYY-MM-DD")){
+            txtBirth.setText("");
+            txtBirth.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_txtBirthFocusGained
+
+    private void txtBirthFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBirthFocusLost
+
+        if(txtBirth.getText().equals("")){
+            txtBirth.setText("YYYY-MM-DD");
+            txtBirth.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtBirthFocusLost
+
+    private void txtBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBirthActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBirthActionPerformed
 
     private void txtAddressFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAddressFocusGained
         // TODO add your handling code here:
@@ -740,6 +606,26 @@ public class PatientInformation extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtAddressFocusLost
 
+    private void txtAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAddressActionPerformed
+
+    private void txtPhoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneFocusGained
+
+        if(txtPhone.getText().equals("+58212-1234567")){
+            txtPhone.setText("");
+            txtPhone.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_txtPhoneFocusGained
+
+    private void txtPhoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneFocusLost
+
+        if(txtPhone.getText().equals("")){
+            txtPhone.setText("+58212-1234567");
+            txtPhone.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtPhoneFocusLost
+
     private void txtPhone2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhone2FocusGained
         // TODO add your handling code here:
         if(txtPhone2.getText().equals("0212-1234567")){
@@ -755,6 +641,10 @@ public class PatientInformation extends javax.swing.JFrame {
             txtPhone2.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_txtPhone2FocusLost
+
+    private void txtPhone2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhone2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPhone2ActionPerformed
 
     private void txtEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusGained
         // TODO add your handling code here:
@@ -772,22 +662,6 @@ public class PatientInformation extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtEmailFocusLost
 
-    private void bloodTypeInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bloodTypeInputFocusGained
-        // TODO add your handling code here:
-        if(bloodTypeInput.getText().equals("Ingrese Grupo Sanguineo")){
-            bloodTypeInput.setText("");
-            bloodTypeInput.setForeground(new Color(0,0,0));
-        }
-    }//GEN-LAST:event_bloodTypeInputFocusGained
-
-    private void bloodTypeInputFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bloodTypeInputFocusLost
-        // TODO add your handling code here:
-        if(bloodTypeInput.getText().equals("")){
-            bloodTypeInput.setText("Ingrese Grupo Sanguineo");
-            bloodTypeInput.setForeground(new Color(153,153,153));
-        }
-    }//GEN-LAST:event_bloodTypeInputFocusLost
-
     private void statusInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_statusInputFocusGained
         // TODO add your handling code here:
         if(statusInput.getText().equals("Estado del Paciente")){
@@ -804,13 +678,108 @@ public class PatientInformation extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_statusInputFocusLost
 
-    private void txtBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBirthActionPerformed
+    private void combPathologiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combPathologiesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtBirthActionPerformed
+        String value;
+        value = (String) combPathologies.getSelectedItem();
+        
+        if(value.equals("Sí poseo")){
+            txtPathologies.setVisible(true);
+        }else{
+            txtPathologies.setVisible(false);
+        }
 
-    private void txtPhone2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhone2ActionPerformed
+        
+    }//GEN-LAST:event_combPathologiesActionPerformed
+
+    private void combAllergiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combAllergiesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPhone2ActionPerformed
+        String value;
+        value = (String) combAllergies.getSelectedItem();
+        
+        if(value.equals("Sí poseo")){
+            txtAllergies.setVisible(true);
+        }else{
+            txtAllergies.setVisible(false);
+        }
+    }//GEN-LAST:event_combAllergiesActionPerformed
+
+    private void bttnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnSaveActionPerformed
+        // TODO add your handling code here:
+        if (FormValidator.isFormValid(rootPane) == false) {
+            JOptionPane.showMessageDialog(null, "No se permiten campos vacíos ", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if (statusInput.getText().equals("Estado del Paciente")){
+            JOptionPane.showMessageDialog(null, "No se permiten campos vacíos ", "Verifique los los campos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if (txtAditionalInfo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No se permiten campos vacíos", "Verifique las Notas Adicionales", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        
+        
+        try {
+            Patient new_patient = new Patient(
+                    txtPhone.getText(),
+                    txtPhone2.getText(),
+                    txtName.getText() + ' ' + txtLastName.getText(),
+                    txtId.getText(),
+                    null,
+                    txtAddress.getText(),
+                    dateFormat.parse(txtBirth.getText()),
+                    txtEmail.getText(),
+                    SessionManager.getInstance().getCurrentUser(),
+                    (String) combBirthPlace.getSelectedItem(),
+                    (String) genreInput.getSelectedItem()
+                    
+            );
+            
+            new PatientDAO().insertPatient(new_patient);
+            
+            int patientId = new RecordsDAO().getLastInsertId();
+            
+            System.out.print(patientId);
+            
+           db.entities.Record new_record;
+            new_record = new db.entities.Record(
+                    null, // id
+                    new java.sql.Date(new Date().getTime()),// fecha actual
+                    (String) combAllergies.getSelectedItem(),// alergias
+                    txtAllergies.getText(),
+                    (String) combPathologies.getSelectedItem(),// patologias
+                    txtPathologies.getText(),
+                    txtAditionalInfo.getText(),
+                    patientId,
+                    SessionManager.getInstance().getCurrentUser(),
+                    statusInput.getText(), 
+                    (String) combBloodType.getSelectedItem(),
+                    (String) insurance.getSelectedItem()
+            );
+            
+           
+            new RecordsDAO().insertRecord(new_record);
+            
+            this.dispose();
+            JOptionPane.showMessageDialog(null, "Registro Exitoso", "Paciente añadido correctamente", JOptionPane.INFORMATION_MESSAGE);
+            new Dashboard().setVisible(true);
+        } catch (ParseException ex) {
+            Logger.getLogger(PatientInformation1.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(PatientInformation1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bttnSaveActionPerformed
+
+    private void bttnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnBackActionPerformed
+        // TODO add your handling code here:
+        tabsViews.setSelectedIndex(0);
+    }//GEN-LAST:event_bttnBackActionPerformed
+
+    private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPhoneActionPerformed
 
     /**
      * @param args the command line arguments
@@ -838,6 +807,7 @@ public class PatientInformation extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(PatientInformation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -848,50 +818,57 @@ public class PatientInformation extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel BgPanel2;
+    private javax.swing.JLabel LabelAllergies;
+    private javax.swing.JLabel LabelPathologies;
     private javax.swing.JLabel LabelSecondPhone;
-    private javax.swing.JTabbedPane TabViews;
-    private javax.swing.JButton back;
-    private javax.swing.JTextField bloodTypeInput;
+    private javax.swing.JLabel LabelSubtittle;
+    private javax.swing.JLabel LabelTittle;
+    private javax.swing.JButton bttnBack;
+    private javax.swing.JButton bttnSave;
+    private javax.swing.JComboBox<String> combAllergies;
+    private javax.swing.JComboBox<String> combBirthPlace;
+    private javax.swing.JComboBox<String> combBloodType;
+    private javax.swing.JComboBox<String> combPathologies;
     private javax.swing.JComboBox<String> genreInput;
     private javax.swing.JComboBox<String> insurance;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JFileChooser jFileChooser2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel labelAddress;
+    private javax.swing.JLabel labelAditionalInfo;
+    private javax.swing.JLabel labelAllergies;
     private javax.swing.JLabel labelBirth;
     private javax.swing.JLabel labelBirthPlace;
+    private javax.swing.JLabel labelBloodType;
     private javax.swing.JLabel labelEmail;
+    private javax.swing.JLabel labelGender;
     private javax.swing.JLabel labelId;
-    private javax.swing.JLabel labelInfo;
+    private javax.swing.JLabel labelInsurance;
     private javax.swing.JLabel labelLastName;
     private javax.swing.JLabel labelName;
+    private javax.swing.JLabel labelPathologies;
     private javax.swing.JLabel labelPhone;
+    private javax.swing.JLabel labelState;
+    private javax.swing.JLabel labelSubtittle;
     private javax.swing.JLabel labelTittle;
-    private javax.swing.JButton savePatientButton;
+    private javax.swing.JPanel panelMedicalInfo;
+    private javax.swing.JPanel panelPatientFile;
+    private javax.swing.JPanel panelPatientInfo;
     private javax.swing.JTextField statusInput;
+    private javax.swing.JTabbedPane tabsViews;
     private javax.swing.JTextField txtAddress;
+    private javax.swing.JTextArea txtAditionalInfo;
+    private javax.swing.JTextArea txtAllergies;
     private javax.swing.JTextField txtBirth;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtName;
+    private javax.swing.JTextArea txtPathologies;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtPhone2;
     // End of variables declaration//GEN-END:variables

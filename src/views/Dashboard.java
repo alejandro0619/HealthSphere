@@ -181,8 +181,8 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void NewPatient(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NewPatient
         // TODO add your handling code here:
-        //this.dispose();
-        //new PatientInformation().setVisible(true);
+        this.dispose();
+        new PatientInformation().setVisible(true);
     }//GEN-LAST:event_NewPatient
 
     private void profileClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileClicked

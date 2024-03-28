@@ -45,16 +45,16 @@ public class Signup extends javax.swing.JFrame {
         labelName = new javax.swing.JLabel();
         labelEmail = new javax.swing.JLabel();
         labelPassword = new javax.swing.JLabel();
-        inputFullName = new RoundedTextField();
-        inputEmail = new RoundedTextField();
+        inputFullName = new javax.swing.JTextField();
+        inputEmail = new javax.swing.JTextField();
         btnSignup = new javax.swing.JButton();
         labelSubtitle = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
-        inputPassword = new RoundedPasswordField();
+        inputPassword = new javax.swing.JPasswordField();
         labelAddress = new javax.swing.JLabel();
-        inputAddress = new RoundedTextField();
+        inputAddress = new javax.swing.JTextField();
         labelCedula = new javax.swing.JLabel();
-        inputID = new RoundedTextField();
+        inputID = new javax.swing.JTextField();
         labelSpecialty = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
 
@@ -320,16 +320,29 @@ public class Signup extends javax.swing.JFrame {
     }//GEN-LAST:event_inputIDActionPerformed
 
     private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
-        if(! new IDChecker(inputID.getText()).isValid()) {
+        if(! new IDChecker(inputID.getText()).isValid() ||  inputID.getText().equals("V00000000")) {
             JOptionPane.showMessageDialog(null, "La cédula tiene un formato inválido", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
             return;
-        } else if(! new EmailChecker(inputEmail.getText()).isValid()) {
+        } else if(! new EmailChecker(inputEmail.getText()).isValid() || inputEmail.getText().equals("ejemplo@gmail.com")) {
             JOptionPane.showMessageDialog(null, "El correo electrónico tiene un formato inválido", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
             return;
         } else if (new FormValidator().isFormValid(Form2) == false) {
             JOptionPane.showMessageDialog(null, "No se permiten campos vacíos ", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
             return;
+        } else if (inputAddress.getText().equals("Ingrese su Direccion")){
+            JOptionPane.showMessageDialog(null, "No se permiten campos vacíos ", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else if (inputFullName.getText().equals("Ingrese su Nombre Completo")){
+            JOptionPane.showMessageDialog(null, "No se permiten campos vacíos ", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }else if (inputPassword.getPassword().equals("Ingrese Contraseña") || inputPassword.getText().equals("Ingrese Contraseña")){
+            JOptionPane.showMessageDialog(null, "No se permiten campos vacíos ", "Verifique sus datos", JOptionPane.WARNING_MESSAGE);
+            return;
         }
+        
+        
+       
+        
         Doctor new_doctor;
         new_doctor = new Doctor(
                 null, inputFullName.getText(),

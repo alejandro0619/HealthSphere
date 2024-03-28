@@ -37,7 +37,7 @@ public class RecordsDAO {
     }
  
     public QueryResponses insertRecord(Record reporte)throws SQLException{
-        String query = "INSERT INTO reporte (id, fecha_emision, alergias, descrip_alergias, patologias, descrip_patologias, descrip_reporte, id_medico, id_paciente) VALUES (?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO reporte (id, fecha_emision, alergias, descrip_alergias, patologias, descrip_patologias, descrip_reporte, id_paciente ,id_medico, estado, tipo_sangre) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
         PreparedStatement statement = this.conn.prepareStatement(query);
 
@@ -48,8 +48,11 @@ public class RecordsDAO {
          statement.setString(5, reporte.getPatologias());
          statement.setString(6, reporte.getDescripPatologias());
          statement.setString(7, reporte.getDescripReporte());
-         statement.setInt(8, reporte.getMedico().getId());
-         statement.setInt(9, reporte.getIdPaciente());
+         statement.setInt(8, reporte.getIdPaciente());
+         statement.setInt(9, reporte.getMedico().getId());
+         statement.setString(10, reporte.getEstado());
+         statement.setString(11, reporte.getTipoSangre());
+         statement.setString(11, reporte.getSeguro());
          
          int insertedRows = statement.executeUpdate(); // filas afectadas 
          this.conn.close();
