@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-03-2024 a las 18:46:48
+-- Tiempo de generación: 28-03-2024 a las 15:10:37
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -48,7 +48,15 @@ INSERT INTO `medico` (`id`, `nombre_completo`, `correo_electronico`, `cedula`, `
 (6, 'nose', 'nose@gmail.com', 'V12345678', 'tampoco', 'ci', 'C1szyXO00tzKoKt+jmN/2cO5CsuKzkXHqQR7OS13Vxc='),
 (7, 'si', 'si@gmail.com', 'V98765432', 'si', 'si', 'C1szyXO00tzKoKt+jmN/2cO5CsuKzkXHqQR7OS13Vxc='),
 (8, 'alejandro lopez', 'a@gmail.com', 'V30819825', 'si', 'si', 'rAAKggut82LrUYqRjFEHGtMGNe2YgjSciAHV4atBS+Q='),
-(9, 'sisisi', 'hola@gmail.com', 'V6789054', 'jajaj', 'Cardiología', 'C1szyXO00tzKoKt+jmN/2cO5CsuKzkXHqQR7OS13Vxc=');
+(9, 'sisisi', 'hola@gmail.com', 'V6789054', 'jajaj', 'Cardiología', 'C1szyXO00tzKoKt+jmN/2cO5CsuKzkXHqQR7OS13Vxc='),
+(11, 'wdwdw', 'nnenen@gmail.com', 'V22345678', 'Ingrese su Direccion', 'Anestesiología', 'wzbeibVYWxypeKXKWQl2MTu0WEpU/VWBWWlebc1eEQQ='),
+(13, 'ZZzZzZ', 'NEYEYEYEY@HOTMAIL.COM', 'V31819835', 'Ingrese su Direccion', 'Anestesiología', 'wzbeibVYWxypeKXKWQl2MTu0WEpU/VWBWWlebc1eEQQ='),
+(14, 'Ingrese su Nombre Completo', 'hshhshshhiqiwuehq@hotmail.com', 'V11111127', 'Ingrese su Direccion', 'Anestesiología', 'wzbeibVYWxypeKXKWQl2MTu0WEpU/VWBWWlebc1eEQQ='),
+(15, 'Ingrese su Nombre Completo', 'nry@gmail.com', 'V8899898', 'Ingrese su Direccion', 'Anestesiología', 'wzbeibVYWxypeKXKWQl2MTu0WEpU/VWBWWlebc1eEQQ='),
+(16, 'Ingrese su Nombre Completo', 'neuey@gmail.com', 'V7657676', 'rttrtrtrt', 'Anestesiología', 'wzbeibVYWxypeKXKWQl2MTu0WEpU/VWBWWlebc1eEQQ='),
+(17, 'fggf', 'nsioidi@gmail.com', 'V7474959', 'hghghg', 'Anestesiología', 'wzbeibVYWxypeKXKWQl2MTu0WEpU/VWBWWlebc1eEQQ='),
+(18, 'etetetet', 'neyhhdhdh@hotmail.com', 'V75685959', 'etteet', 'Anestesiología', 'wzbeibVYWxypeKXKWQl2MTu0WEpU/VWBWWlebc1eEQQ='),
+(19, 'ffhfhf', 'nnsdifiij@hotmail.com', 'V8558507', 'hfhf', 'Anestesiología', 'msI2XX7ejDj6sNHeBpQyQPRnwSycu2K5B34B/28ZWh0=');
 
 -- --------------------------------------------------------
 
@@ -60,9 +68,9 @@ CREATE TABLE `paciente` (
   `id` int(11) NOT NULL,
   `nombre_completo` varchar(20) NOT NULL,
   `fecha_nacimiento` date NOT NULL,
+  `lugar_nacimiento` varchar(50) NOT NULL,
   `cedula` varchar(9) NOT NULL,
   `direccion` text NOT NULL,
-  `seguro` tinyint(1) NOT NULL,
   `genero` int(11) NOT NULL,
   `correo_electronico` varchar(30) NOT NULL,
   `id_doctor` int(11) NOT NULL,
@@ -74,20 +82,15 @@ CREATE TABLE `paciente` (
 -- Volcado de datos para la tabla `paciente`
 --
 
-INSERT INTO `paciente` (`id`, `nombre_completo`, `fecha_nacimiento`, `cedula`, `direccion`, `seguro`, `genero`, `correo_electronico`, `id_doctor`, `celular_1`, `celular_2`) VALUES
-(1, 'gfg fgf', '2004-11-01', '123456', 'cxcxc', 0, 0, 'neyyy@gamil.com', 4, '04127508815', '04123456789'),
-(3, 'ney rivas', '2004-11-06', '12345678', 'lomitas', 0, 0, 'ney@gmail.com', 4, '04127654321', '04124567890'),
-(4, 'gtgtgt gtgtg', '2000-10-10', 'V00000000', 'tgtgt', 0, 0, 'sii@gmail.com', 4, '0412-8889900', '0412-8889900'),
-(5, 'trtr rtrt', '2010-11-10', 'V11111111', '21', 0, 0, 'no@gmail.com', 4, '0412-1234567', '0412-1234567'),
-(9, 'Felix  Rivas', '1961-08-01', 'V8706853', 'lomitas', 0, 0, 'felix@gmail.com', 4, '0412-6503802', '0412-6503802'),
-(10, 'nosee noseee', '2000-10-10', 'V7888884', 'siii', 0, 0, 'siiiii@gmail.com', 4, '0412-1235690', '0412-1235690'),
-(11, 'fgfgfg fgfg', '2000-10-10', 'V78787878', 'fgfg', 0, 0, 'gfgfgfg@gmail.com', 4, '0412-1234567', '0412-7508815'),
-(12, 'sii siii', '2024-01-11', 'V30122122', 'siii', 0, 0, 'ohhh@gmail.com', 4, '0412-3456798', '0412-3456798'),
-(13, 'gg5td tdtdt', '2021-11-10', 'V9090909', 'gdg', 0, 0, 'nooO@gmail.com', 4, '0412-1238796', '0412-1237698'),
-(14, 'dgd gdg', '2000-11-11', 'V30999111', 'dgdg', 0, 0, 'nwnwnwn@gmail.com', 4, '0412-7889876', '0412-9876543'),
-(15, 'sds sdsds', '2010-11-10', 'V8282828', 'sdds', 0, 0, 'sajsj@gmail.com', 4, '0412-9890011', '0412-0001222'),
-(16, 'dsd sdss', '2020-11-11', 'V30222000', 'dgdgd', 0, 0, 'adii@gmail.com', 4, '0412-1123344', '0412-9876542'),
-(17, 'dw fsfs', '2021-11-11', 'V87999912', 'dfd', 0, 0, 'daad@hotmail.com', 4, '0212-6657878', '0412-1118899');
+INSERT INTO `paciente` (`id`, `nombre_completo`, `fecha_nacimiento`, `lugar_nacimiento`, `cedula`, `direccion`, `genero`, `correo_electronico`, `id_doctor`, `celular_1`, `celular_2`) VALUES
+(1, 'gfg fgf', '2004-11-01', '', '123456', 'cxcxc', 0, 'neyyy@gamil.com', 4, '04127508815', '04123456789'),
+(3, 'ney rivas', '2004-11-06', '', '12345678', 'lomitas', 0, 'ney@gmail.com', 4, '04127654321', '04124567890'),
+(4, 'gtgtgt gtgtg', '2000-10-10', '', 'V00000000', 'tgtgt', 0, 'sii@gmail.com', 4, '0412-8889900', '0412-8889900'),
+(5, 'trtr rtrt', '2010-11-10', '', 'V11111111', '21', 0, 'no@gmail.com', 4, '0412-1234567', '0412-1234567'),
+(9, 'Felix  Rivas', '1961-08-01', '', 'V8706853', 'lomitas', 0, 'felix@gmail.com', 4, '0412-6503802', '0412-6503802'),
+(10, 'nosee noseee', '2000-10-10', '', 'V7888884', 'siii', 0, 'siiiii@gmail.com', 4, '0412-1235690', '0412-1235690'),
+(11, 'fgfgfg fgfg', '2000-10-10', '', 'V78787878', 'fgfg', 0, 'gfgfgfg@gmail.com', 4, '0412-1234567', '0412-7508815'),
+(12, 'sii siii', '2024-01-11', '', 'V30122122', 'siii', 0, 'ohhh@gmail.com', 4, '0412-3456798', '0412-3456798');
 
 -- --------------------------------------------------------
 
@@ -99,12 +102,15 @@ CREATE TABLE `reporte` (
   `id` int(11) NOT NULL,
   `fecha_emision` date NOT NULL,
   `alergias` tinyint(1) NOT NULL,
-  `descrip_alergias` varchar(50) NOT NULL,
+  `descrip_alergias` varchar(50) DEFAULT NULL,
   `patologias` tinyint(1) NOT NULL,
   `descrip_patologias` varchar(50) NOT NULL,
   `descrip_reporte` text NOT NULL,
   `id_paciente` int(11) NOT NULL,
-  `id_medico` int(11) NOT NULL
+  `id_medico` int(11) NOT NULL,
+  `estado` varchar(20) NOT NULL,
+  `tipo_sangre` tinyint(4) NOT NULL,
+  `seguro` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -142,7 +148,7 @@ ALTER TABLE `reporte`
 -- AUTO_INCREMENT de la tabla `medico`
 --
 ALTER TABLE `medico`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `paciente`
