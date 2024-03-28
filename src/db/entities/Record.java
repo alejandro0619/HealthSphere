@@ -18,13 +18,13 @@ public class Record{
     private String patologias;
     private String descrip_patologias;
     private String descrip_reporte;
-    private Integer id_paciente;
+    private Integer paciente;
     private Doctor medico;
     private String estado;
     private String tipo_sangre;
     private String seguro;
     
-    public Record(Integer id,Date fecha_emision, String alergias, String descrip_alergias, String patologias, String descrip_patologias, String descrip_reporte, Integer id_paciente, Doctor medico){
+    public Record(Integer id,Date fecha_emision, String alergias, String descrip_alergias, String patologias, String descrip_patologias, String descrip_reporte, int paciente, Doctor medico, String estado, String tipo_sangre, String seguro){
         this.id = id;
         this.fecha_emision = fecha_emision;
         this.alergias = alergias;
@@ -32,7 +32,7 @@ public class Record{
         this.patologias = patologias;
         this.descrip_patologias = descrip_patologias;
         this.descrip_reporte = descrip_reporte;
-        this.id_paciente = id_paciente;
+        this.paciente = paciente;
         this.medico = medico;
         this.estado = estado;
         this.tipo_sangre = tipo_sangre;
@@ -40,7 +40,6 @@ public class Record{
     
     }
 
-   
      public int getId() {
         return id;
     }
@@ -98,11 +97,7 @@ public class Record{
     }
     
     public int getIdPaciente() {
-        return id_paciente;
-    }
-
-    public void setIdPaciente(int id) {
-        this.id_paciente = id_paciente;
+        return paciente;
     }
     
     public Doctor getMedico() {

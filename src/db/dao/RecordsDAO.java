@@ -37,7 +37,7 @@ public class RecordsDAO {
     }
  
     public QueryResponses insertRecord(Record reporte)throws SQLException{
-        String query = "INSERT INTO reporte (id, fecha_emision, alergias, descrip_alergias, patologias, descrip_patologias, descrip_reporte, id_paciente ,id_medico, estado, tipo_sangre) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO reporte (id, fecha_emision, alergias, descrip_alergias, patologias, descrip_patologias, descrip_reporte, id_paciente ,id_medico, estado, tipo_sangre, seguro) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 
         PreparedStatement statement = this.conn.prepareStatement(query);
 
@@ -52,7 +52,7 @@ public class RecordsDAO {
          statement.setInt(9, reporte.getMedico().getId());
          statement.setString(10, reporte.getEstado());
          statement.setString(11, reporte.getTipoSangre());
-         statement.setString(11, reporte.getSeguro());
+         statement.setString(12, reporte.getSeguro());
          
          int insertedRows = statement.executeUpdate(); // filas afectadas 
          this.conn.close();
@@ -62,37 +62,4 @@ public class RecordsDAO {
                 return new QueryResponses(true, "No se ha podido obtener reporte");
             }
     }
-    public Record getRecordByID(String ID) throws SQLException {
-        String query = "SELECT * FROM reporte WHERE id = ?";
-        try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setString(1, ID);
-            try (ResultSet rs = statement.executeQuery()) {
-                if (rs.next()) {
-                   //return extractRecords(rs);
-                }
-            }
-        }
-        return null;// no se encontro el reporte
-    }
-  
-    
-    public List<Record> getAllRecords() throws SQLException {
-        List<Record> Records = new ArrayList<>();
-        String query = "SELECT * FROM reporte WHERE id_medico = ? AND id_paciente = ?";
-        try (PreparedStatement statement = conn.prepareStatement(query)){
-             statement.setInt(1, Doctor.getIdMedico());
-             statement.setString(2, Patient.getIdPaciente());
-            try (ResultSet rs = statement.executeQuery()) {
-                while (rs.next()) {
-                    //Records.add(extractRecords(rs));
-                }
-            }
-            return Records;
-        }
-    }
-    
-    
-
-    
-
 }

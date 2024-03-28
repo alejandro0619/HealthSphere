@@ -9,6 +9,7 @@ import customComps.RoundedTextField;
 import db.dao.PatientDAO;
 import db.dao.RecordsDAO;
 import db.entities.Patient;
+import db.entities.Record;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -21,7 +22,7 @@ import validations.EmailChecker;
 import validations.FormValidator;
 import validations.IDChecker;
 import validations.PhoneChecker;
-
+import java.sql.*;
 /**
  *
  * @author Nyderlin Rivas
@@ -316,6 +317,11 @@ public class PatientInformation extends javax.swing.JFrame {
         panelPatientInfo.add(labelInsurance, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 480, -1, -1));
 
         insurance.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sí poseo seguro.", "No poseo seguro." }));
+        insurance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insuranceActionPerformed(evt);
+            }
+        });
         panelPatientInfo.add(insurance, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 520, 200, 30));
 
         tabsViews.addTab("Información Personal", panelPatientInfo);
@@ -722,14 +728,14 @@ public class PatientInformation extends javax.swing.JFrame {
         
         
         try {
-            Patient new_patient = new Patient(
+            Patient patient = new Patient (
                     txtPhone.getText(),
                     txtPhone2.getText(),
                     txtName.getText() + ' ' + txtLastName.getText(),
                     txtId.getText(),
                     null,
                     txtAddress.getText(),
-                    dateFormat.parse(txtBirth.getText()),
+                    dateFormat.parse(txtBirth.getText()), // parse text into Date
                     txtEmail.getText(),
                     SessionManager.getInstance().getCurrentUser(),
                     (String) combBirthPlace.getSelectedItem(),
@@ -737,36 +743,29 @@ public class PatientInformation extends javax.swing.JFrame {
                     
             );
             
-            new PatientDAO().insertPatient(new_patient);
-            
-            int patientId = new RecordsDAO().getLastInsertId();
-            
-            System.out.print(patientId);
-            
-           db.entities.Record new_record;
-            new_record = new db.entities.Record(
-                    null, // id
-                    new java.sql.Date(new Date().getTime()),// fecha actual
-                    (String) combAllergies.getSelectedItem(),// alergias
+            int patientId = new PatientDAO().insertPatient(patient);
+            Record record = new Record (
+                    null,
+                    new java.sql.Date(new java.util.Date().getTime()),
+                    (String) combAllergies.getSelectedItem(),
                     txtAllergies.getText(),
-                    (String) combPathologies.getSelectedItem(),// patologias
+                    (String) combPathologies.getSelectedItem(),
                     txtPathologies.getText(),
                     txtAditionalInfo.getText(),
                     patientId,
                     SessionManager.getInstance().getCurrentUser(),
-                    statusInput.getText(), 
+                    statusInput.getText(),
                     (String) combBloodType.getSelectedItem(),
                     (String) insurance.getSelectedItem()
             );
             
-           
-            new RecordsDAO().insertRecord(new_record);
+            new RecordsDAO().insertRecord(record);
             
             this.dispose();
             JOptionPane.showMessageDialog(null, "Registro Exitoso", "Paciente añadido correctamente", JOptionPane.INFORMATION_MESSAGE);
             new Dashboard().setVisible(true);
         } catch (ParseException ex) {
-            Logger.getLogger(PatientInformation1.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error en la fecha", "Fecha inválida", JOptionPane.WARNING_MESSAGE);
         } catch (SQLException ex) {
             Logger.getLogger(PatientInformation1.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -781,41 +780,9 @@ public class PatientInformation extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPhoneActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PatientInformation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PatientInformation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PatientInformation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PatientInformation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PatientInformation().setVisible(true);
-            }
-        });
-    }
+    private void insuranceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insuranceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_insuranceActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelAllergies;

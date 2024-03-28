@@ -19,25 +19,26 @@ public class Patient {
     private String phoneNumber2;
     private String fullName;
     private String ID;
-    private String dbID;
+    private Integer dbID;
     private String address;
     private Date birthdate;
     private String email;
     private Doctor doc;
-    private String lugarNacimiento;
+    private String birthPlace;
     private String genero;
+    
     // Constructor
-    public Patient(String phoneNumber1, String phoneNumber2, String fullName, String ID, Integer dbID, String address, Date birthdate, String email, Doctor doc, String par2, String par3, String par4) {
+    public Patient(String phoneNumber1, String phoneNumber2, String fullName, String ID, Integer dbID, String address, Date birthdate, String email, Doctor doc, String birthPlace, String genero) {
         this.phoneNumber1 = phoneNumber1;
         this.phoneNumber2 = phoneNumber2;
         this.fullName = fullName;
-        this.ID = ID;
-        this.dbID = null;
+        this.ID = ID; // cedula
+        this.dbID = dbID;
         this.address = address;
         this.birthdate = birthdate;
         this.email = email;
         this.doc = doc;
-        this.lugarNacimiento = lugarNacimiento;
+        this.birthPlace = birthPlace;        
         this.genero = genero;
         
     }
@@ -81,11 +82,11 @@ public class Patient {
         this.ID = ID;
     }
 
-    public String getDbID() {
+    public Integer getDbID() {
         return dbID;
     }
 
-    public void setDbID(String dbID) {
+    public void setDbID(Integer dbID) {
         this.dbID = dbID;
     }
 
@@ -114,11 +115,11 @@ public class Patient {
     }
     
     public String getLugarNacimiento() {
-        return lugarNacimiento;
+        return birthPlace;
     }
 
-    public void setLugarNacimiento(String lugarNacimiento) {
-        this.lugarNacimiento = lugarNacimiento;
+    public void setLugarNacimiento(String birthPlace) {
+        this.birthPlace = birthPlace;
     }
 
     public String getGenero() {
